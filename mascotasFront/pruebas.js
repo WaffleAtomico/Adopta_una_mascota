@@ -1,0 +1,13 @@
+//NOTA: creo que cada html debera tener su propio archivo js
+//Podemos usar si es necesario, un css general, para mantener consistencia, 
+//pero para agregar distintos componentes, si será necesario agregar un .js para cada uno
+
+import { createButton } from "./components/button.js";
+
+document.addEventListener("DOMContentLoaded", ()=>{
+    const botonContainer = document.getElementById("button");
+    console.log(botonContainer)
+    const testButton = createButton({ text: "Aceptar", color: "success" }); //boton base
+
+    botonContainer.innerHTML = testButton;
+})
