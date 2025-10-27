@@ -3,6 +3,7 @@
 //pero para agregar distintos componentes, si será necesario agregar un .js para cada uno
 
 import { createButton } from "./components/button.js";
+import { createCheckBoxGroup } from "./components/checkBoxGroup.js";
 import { createNavbar } from "./components/navbar.js";
 
 
@@ -18,4 +19,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const testNavbar = createNavbar()
 
     navbarContainer.innerHTML = testNavbar
+
+    const checkboxContainer = document.getElementById("CheckBoxes");
+    console.log(checkboxContainer)
+    const textCheckBoxes = createCheckBoxGroup(["Item1", "item2", "Item3"])
+    checkboxContainer.innerHTML = textCheckBoxes;
+
 })

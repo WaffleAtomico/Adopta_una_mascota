@@ -1,4 +1,3 @@
-// Navbar fija inferior completamente estática con Bootstrap
 export function createNavbar(color = "#198754") {
 
     const links = ["Inicio", "Mascotas", "Adoptar", "Contacto"];
