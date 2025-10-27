@@ -3,6 +3,8 @@
 //pero para agregar distintos componentes, si será necesario agregar un .js para cada uno
 
 import { createButton } from "./components/button.js";
+import { createNavbar } from "./components/navbar.js";
+
 
 document.addEventListener("DOMContentLoaded", ()=>{
     const botonContainer = document.getElementById("button");
@@ -10,4 +12,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const testButton = createButton({ text: "Aceptar", color: "success" }); //boton base
 
     botonContainer.innerHTML = testButton;
+
+    const navbarContainer = document.getElementById("navbar")
+    console.log(navbarContainer)
+    const testNavbar = createNavbar()
+
+    navbarContainer.innerHTML = testNavbar
 })
