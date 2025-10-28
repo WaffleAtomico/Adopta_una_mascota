@@ -5,6 +5,8 @@
 import { createButton } from "./components/button.js";
 import { createCheckBoxGroup } from "./components/checkBoxGroup.js";
 import { createNavbar } from "./components/navbar.js";
+import { createRadioButtonsGroup } from "./components/radioButtonsGroup.js";
+import { createTextInput } from "./components/textInput.js";
 
 
 document.addEventListener("DOMContentLoaded", ()=>{
@@ -22,7 +24,15 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
     const checkboxContainer = document.getElementById("CheckBoxes");
     console.log(checkboxContainer)
-    const textCheckBoxes = createCheckBoxGroup(["Item1", "item2", "Item3"])
-    checkboxContainer.innerHTML = textCheckBoxes;
+    const testCheckBoxes = createCheckBoxGroup(["Item1", "item2", "Item3"])
+    checkboxContainer.innerHTML = testCheckBoxes;
+
+    const RadioButtonsContainer = document.getElementById("radioButtons")
+    const testRadios = createRadioButtonsGroup(["Item1","Item2","Item3"], "GrupoPrueba");
+    RadioButtonsContainer.innerHTML = testRadios;
+
+    const testInputContainer = document.getElementById("textInput");
+    const testInput = createTextInput("Titulo", "Escribe algo");
+    testInputContainer.innerHTML = testInput
 
 })
