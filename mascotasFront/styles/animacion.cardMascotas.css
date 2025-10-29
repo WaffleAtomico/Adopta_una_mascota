@@ -2,11 +2,11 @@
     position: relative;
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0,0,0,0.25);
-    height: 400px;
+    height: 520px;
     border-radius: .5rem;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out;
-    width: 300px;
+    width: 350px;
 }
 
 .card-img-backgroud{
@@ -54,4 +54,11 @@
 
 .card-animado:hover .card-body-extra {
     opacity: 1;
+}
+
+.card-content-reveal .card-body-extra .card-text{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
 }

@@ -1,4 +1,4 @@
-export function petsCart({
+export function createPetCard({
     nombre,
     caracter,
     especie, 
@@ -6,15 +6,16 @@ export function petsCart({
     ciudad, 
     estado, 
     edad, 
-    sexo
+    sexo,
+    imagen = "https://placehold.co/50x50"
     } = {} ){
 
     const links = ["Sobre mi", "Mandar Solicitud"];
 
-    const petCart =
+    const petCard =
     `
     <div class="card card-animado">
-        <img class="card-img-top card-img-backgroud" src="https://placehold.co/100x50" alt="Mascota">
+        <img class="card-img-top card-img-backgroud" src=${imagen} alt="Mascota">
         <div class="card-content-reveal">
             <div class="card-header-inicial">
                 <h5> ${nombre}</h5>
@@ -38,8 +39,8 @@ export function petsCart({
                             <p>${ciudad}, ${estado}</p>
                         </li>
                         <li class="list-group-item">
-                            <button>BTN 1</button>
-                            <button>BTN 2</button>
+                            <button>Mas Sobre mi</button>
+                            <button>Adóptame</button>
                         </li>
                     </ul>                                  
             </div>
@@ -47,5 +48,5 @@ export function petsCart({
     </div>
     `
 
-    return petsCart;
+    return petCard;
 }
