@@ -8,7 +8,7 @@ import { createNavbar } from "./components/navbar.js";
 import { createRadioButtonsGroup } from "./components/radioButtonsGroup.js";
 import { createTextInput } from "./components/textInput.js";
 import { createPetCard } from "./components/PetsCard.js"
-import { createScrollableList } from "./components/listOfElements.js";
+import { createScrollableList } from "./components/listOfElement.js";
 
 //Esto luego será todo un tipo de objeto, de momento lo hice para mantener un poco más limpio el codigo
 export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, edad, sexo) {
@@ -23,6 +23,8 @@ export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, ed
         sexo
     };
 }
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const botonContainer = document.getElementById("button");
