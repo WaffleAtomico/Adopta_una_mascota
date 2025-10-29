@@ -3,14 +3,12 @@
 //pero para agregar distintos componentes, si será necesario agregar un .js para cada uno
 
 import { createButton } from "./components/button.js";
-<<<<<<< Updated upstream
-=======
 import { createCheckBoxGroup } from "./components/checkBoxGroup.js";
 import { createNavbar } from "./components/navbar.js";
 import { createRadioButtonsGroup } from "./components/radioButtonsGroup.js";
 import { createTextInput } from "./components/textInput.js";
 import { createPetCard } from "./components/PetsCard.js"
->>>>>>> Stashed changes
+
 
 document.addEventListener("DOMContentLoaded", ()=>{
     const botonContainer = document.getElementById("button");
@@ -18,8 +16,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const testButton = createButton({ text: "Aceptar", color: "success" }); //boton base
 
     botonContainer.innerHTML = testButton;
-<<<<<<< Updated upstream
-=======
 
     const navbarContainer = document.getElementById("navbar")
     console.log(navbarContainer)
@@ -39,7 +35,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
     const testInputContainer = document.getElementById("textInput");
     const testInput = createTextInput("Titulo", "Escribe algo");
     testInputContainer.innerHTML = testInput;
-    
     const testPetsCard = document.getElementById("Tarjetas");
     const mascotas = [{nombre: "Firulais", 
                        caracter: "Jugeton", 
@@ -71,6 +66,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
         const testTarjetas= createPetCard(mascota);
         testPetsCard.innerHTML += testTarjetas;
     })
-    
->>>>>>> Stashed changes
+
 })
