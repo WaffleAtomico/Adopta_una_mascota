@@ -8,19 +8,33 @@ import { createNavbar } from "./components/navbar.js";
 import { createRadioButtonsGroup } from "./components/radioButtonsGroup.js";
 import { createTextInput } from "./components/textInput.js";
 import { createPetCard } from "./components/PetsCard.js"
+import { createScrollableList } from "./components/listOfElement.js";
+
+//Esto luego será todo un tipo de objeto, de momento lo hice para mantener un poco más limpio el codigo
+export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, edad, sexo) {
+    return {
+        nombre,
+        caracter,
+        especie,
+        raza,
+        ciudad,
+        estado,
+        edad,
+        sexo
+    };
+}
 
 
-document.addEventListener("DOMContentLoaded", ()=>{
+
+document.addEventListener("DOMContentLoaded", () => {
     const botonContainer = document.getElementById("button");
     console.log(botonContainer)
     const testButton = createButton({ text: "Aceptar", color: "success" }); //boton base
-
     botonContainer.innerHTML = testButton;
 
     const navbarContainer = document.getElementById("navbar")
     console.log(navbarContainer)
     const testNavbar = createNavbar()
-
     navbarContainer.innerHTML = testNavbar
 
     const checkboxContainer = document.getElementById("CheckBoxes");
@@ -29,42 +43,32 @@ document.addEventListener("DOMContentLoaded", ()=>{
     checkboxContainer.innerHTML = testCheckBoxes;
 
     const RadioButtonsContainer = document.getElementById("radioButtons")
-    const testRadios = createRadioButtonsGroup(["Item1","Item2","Item3"], "GrupoPrueba");
+    const testRadios = createRadioButtonsGroup(["Item1", "Item2", "Item3"], "GrupoPrueba");
     RadioButtonsContainer.innerHTML = testRadios;
 
     const testInputContainer = document.getElementById("textInput");
-    const testInput = createTextInput("Titulo", "Escribe algo");
+
+    const testInput = createTextInput("Titulo", "Escribe algo", {
+        required: true,
+        minLength: 3,
+        maxLength: 30,
+        feedback: "El nombre debe tener entre 3 y 30 caracteres."
+    });
     testInputContainer.innerHTML = testInput;
+
     const testPetsCard = document.getElementById("Tarjetas");
-    const mascotas = [{nombre: "Firulais", 
-                       caracter: "Jugeton", 
-                       especie: "Perro", 
-                       raza: "Pastor", 
-                       ciudad: "Guadalajar", 
-                       estado: "Jalisco", 
-                       edad: "3 años", 
-                       sexo: "Femenino"},
-                      {nombre: "Arya",
-                       caracter: "Sociable",
-                       especie: "Gato",
-                       raza: "Persa",
-                       ciudad: "Monterey",
-                       estado: "Nuevo Leon",
-                       edad: "1 año",
-                       sexo: "Femenino"},
-                       {nombre: "Zeus",
-                        caracter: "Enérgico",
-                        especie: "Perro",
-                        raza: "Chihuaha",
-                        ciudad: "Merida",
-                        estado: "Yucatan",
-                        edad: "5 años",
-                        sexo: "Masculino"
-                       }
-                    ];
-    mascotas.forEach((mascota)=>{
-        const testTarjetas= createPetCard(mascota);
+    const mascotas = [
+        crearMascota("Firulais", "Juguetón", "Perro", "Pastor", "Guadalajara", "Jalisco", "3 años", "Femenino"),
+        crearMascota("Arya", "Sociable", "Gato", "Persa", "Monterrey", "Nuevo León", "1 año", "Femenino"),
+        crearMascota("Zeus", "Enérgico", "Perro", "Chihuahua", "Mérida", "Yucatán", "5 años", "Masculino")
+    ];
+    mascotas.forEach((mascota) => {
+        const testTarjetas = createPetCard(mascota);
         testPetsCard.innerHTML += testTarjetas;
     })
+
+    const testListContainer = document.getElementById("listados");
+    const testList = createScrollableList([testButton, testButton, testInput], "Listado elementos");
+    testListContainer.innerHTML = testList;
 
 })
