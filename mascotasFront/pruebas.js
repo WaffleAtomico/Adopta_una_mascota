@@ -7,11 +7,9 @@ import { createCheckBoxGroup } from "./components/checkBoxGroup.js";
 import { createNavbar } from "./components/navbar.js";
 import { createRadioButtonsGroup } from "./components/radioButtonsGroup.js";
 import { createTextInput } from "./components/textInput.js";
-<<<<<<< Updated upstream
-=======
 import { createPetCard } from "./components/PetsCard.js"
 import { createScrollableList } from "./components/listOfElement.js";
->>>>>>> Stashed changes
+
 
 
 //Esto luego será todo un tipo de objeto, de momento lo hice para mantener un poco más limpio el codigo
@@ -34,13 +32,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const botonContainer = document.getElementById("button");
     console.log(botonContainer)
     const testButton = createButton({ text: "Aceptar", color: "success" }); //boton base
-
     botonContainer.innerHTML = testButton;
 
     const navbarContainer = document.getElementById("navbar")
     console.log(navbarContainer)
     const testNavbar = createNavbar()
-
     navbarContainer.innerHTML = testNavbar
 
     const checkboxContainer = document.getElementById("CheckBoxes");
@@ -53,10 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
     RadioButtonsContainer.innerHTML = testRadios;
 
     const testInputContainer = document.getElementById("textInput");
-<<<<<<< Updated upstream
-    const testInput = createTextInput("Titulo", "Escribe algo");
-    testInputContainer.innerHTML = testInput
-=======
+
     const testInput = createTextInput("Titulo", "Escribe algo", {
         required: true,
         minLength: 3,
@@ -75,7 +68,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const testTarjetas = createPetCard(mascota);
         testPetsCard.innerHTML += testTarjetas;
     })
->>>>>>> Stashed changes
 
     const testListContainer = document.getElementById("listados");
     const testList = createScrollableList([testButton, testButton, testInput], "Listado elementos");
