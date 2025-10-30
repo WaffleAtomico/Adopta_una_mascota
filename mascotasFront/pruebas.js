@@ -4,7 +4,7 @@
 
 import { createButton } from "./components/button.js";
 import { createCheckBoxGroup } from "./components/checkBoxGroup.js";
-import { createNavbar } from "./components/navbar.js";
+import { initNavbar } from "./components/navbar.js";
 import { createRadioButtonsGroup } from "./components/radioButtonsGroup.js";
 import { createTextInput } from "./components/textInput.js";
 import { createPetCard } from "./components/PetsCard.js"
@@ -28,16 +28,14 @@ export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, ed
 
 
 document.addEventListener("DOMContentLoaded", () => {
+    initNavbar();
+
     const botonContainer = document.getElementById("button");
     console.log(botonContainer)
     const testButton = createButton({ text: "Aceptar", color: "success" }); //boton base
     botonContainer.innerHTML = testButton;
 
-    const navbarContainer = document.getElementById("navbar")
-    console.log(navbarContainer)
-    const testNavbar = createNavbar()
-    navbarContainer.innerHTML = testNavbar
-
+    
     const checkboxContainer = document.getElementById("CheckBoxes");
     console.log(checkboxContainer)
     const testCheckBoxes = createCheckBoxGroup(["Item1", "item2", "Item3"], "ChecksPrueba")
