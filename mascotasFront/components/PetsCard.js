@@ -3,8 +3,7 @@ export function createPetCard({
     caracter,
     especie, 
     raza, 
-    ciudad, 
-    estado, 
+    ubicacion, 
     edad, 
     sexo,
     imagen = "https://placehold.co/50x50"
@@ -36,7 +35,7 @@ export function createPetCard({
                         </li>
                         <li>
                             <p><b>Caracter:</b> ${caracter} </p>
-                            <p>${ciudad}, ${estado}</p>
+                            <p>${ubicacion}</p>
                         </li>
                         <li class="list-group-item">
                             <button>Mas Sobre mi</button>
