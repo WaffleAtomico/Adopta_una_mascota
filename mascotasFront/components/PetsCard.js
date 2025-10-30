@@ -13,7 +13,7 @@ export function createPetCard({
 
     const petCard =
     `
-    <div class="card card-animado">
+    <div class="card card-animado text-center">
         <img class="card-img-top card-img-backgroud" src=${imagen} alt="Mascota">
         <div class="card-content-reveal">
             <div class="card-header-inicial">
@@ -22,7 +22,7 @@ export function createPetCard({
             <div class="card-body-extra border-top"> 
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <div class="row">
+                            <div class="row justify-content-center">
                                  <div class="col-5">
                                     <p><b>Especie:</b>${especie}</p>
                                     <p><b>Raza:</b>${raza}</p>
@@ -33,11 +33,11 @@ export function createPetCard({
                                 </div>
                             </div>
                         </li>
-                        <li>
-                            <p><b>Caracter:</b> ${caracter} </p>
-                            <p>${ubicacion}</p>
+                        <li class="list-group-item text-center ">
+                            <p class:"mb-1"><b>Caracter:</b> ${caracter} </p>
+                            <p class:"mb-0">${ubicacion}</p>
                         </li>
-                        <li class="list-group-item">
+                        <li class="list-group-item d-flex justify-content-center gap-2">
                             <button>Mas Sobre mi</button>
                             <button>Adóptame</button>
                         </li>
