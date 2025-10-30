@@ -71,8 +71,17 @@ export function initNavbar(){
   } else {
     const navbarElements = [
       createButton({ text: "Perfil", color: "success", outlined: true }),
-      createButton({ text: "Cerrar sesión", color: "warning" })
+      createButton({ text: "Cerrar sesión", color: "warning", id: "logoutBtn" })
     ];
+
     header.innerHTML = createNavbarNoPhone(navbarElements);
+    const logoutBtn = document.getElementById("logoutBtn");
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", () => {
+        //Arreglar esto, necesitamos una ruta origen, esto depende de donde se encuentre va a fallar
+        window.location.href = "../LoginPage/loginPage.html"; 
+      });
+    }
   }
 }
