@@ -8,7 +8,8 @@ import { createNavbar } from "./components/navbar.js";
 import { createRadioButtonsGroup } from "./components/radioButtonsGroup.js";
 import { createTextInput } from "./components/textInput.js";
 import { createPetCard } from "./components/PetsCard.js"
-import { createScrollableList } from "./components/listOfElement.js";
+import { createScrollableList } from "./components/listOfElements.js";
+import { createForm } from "./components/createForm.js";
 
 //Esto luego será todo un tipo de objeto, de momento lo hice para mantener un poco más limpio el codigo
 export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, edad, sexo) {
@@ -39,11 +40,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const checkboxContainer = document.getElementById("CheckBoxes");
     console.log(checkboxContainer)
-    const testCheckBoxes = createCheckBoxGroup(["Item1", "item2", "Item3"])
+    const testCheckBoxes = createCheckBoxGroup(["Item1", "item2", "Item3"], "ChecksPrueba")
     checkboxContainer.innerHTML = testCheckBoxes;
 
     const RadioButtonsContainer = document.getElementById("radioButtons")
-    const testRadios = createRadioButtonsGroup(["Item1", "Item2", "Item3"], "GrupoPrueba");
+    const testRadios = createRadioButtonsGroup(["Item1", "Item2", "Item3"], "GrupoPrueba", "RadiosPrueba");
     RadioButtonsContainer.innerHTML = testRadios;
 
     const testInputContainer = document.getElementById("textInput");
@@ -71,12 +72,25 @@ document.addEventListener("DOMContentLoaded", () => {
     const testList = createScrollableList([testButton, testButton, testInput], "Listado elementos");
     testListContainer.innerHTML = testList;
 
+    const testFormContainer = document.getElementById("formulario");
+    const elements = [
+        {type: "input",html: testInput},
+        {type: "checkbox", html: testCheckBoxes},
+        {type: "radio", html: testRadios},
+        {type: "button", html: testButton}
+    ];
+    const testForm = createForm("testForm", elements)
+    testFormContainer.innerHTML = testForm;
 
     const startButtonContainer = document.getElementById("comenzar-button");
-    const startButton = createButton({text: "Comenzar a visualizar la pagina!", 
-                                        size:"lg", 
-                                        iconright: "bi bi-arrow-90deg-right", 
-                                        color:"success", 
-                                        outlined: true})
+    const startButton = createButton({
+        text: "Comenzar a visualizar la pagina!",
+        size: "lg",
+        iconright: "bi bi-arrow-90deg-right",
+        color: "success",
+        outlined: true
+    })
     startButtonContainer.innerHTML = startButton
+
+
 })

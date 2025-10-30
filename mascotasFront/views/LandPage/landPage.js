@@ -13,4 +13,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                             iconleft: "bi bi-person-fill-add", 
                                             color:"success"})
     createAccButtonContainer.innerHTML = createAccButton;
+
+    const backButtonContainer = document.getElementById("back-button");
+    const backButton = createButton({text: "Volver a componentes", 
+                                            iconleft: "bi bi-arrow-return-left", 
+                                            color:"secondary"})
+    backButtonContainer.innerHTML = backButton;
 })
