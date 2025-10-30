@@ -13,22 +13,20 @@ export function createTextInput(
   } = validation;
 
   const textInputHTML = `
-    <form class="was-validated text-start">
-      <div class="mb-3">
-        <label class="form-label fw-semibold">${title}</label>
-        <input 
-          type="${type}"
-          class="form-control"
-          placeholder="${placeholder}"
-          ${required ? "required" : ""}
-          ${minLength ? `minlength="${minLength}"` : ""}
-          ${maxLength ? `maxlength="${maxLength}"` : ""}
-          ${pattern ? `pattern="${pattern}"` : ""}
-        >
-        <div class="valid-feedback">Se ve bien!</div>
-        <div class="invalid-feedback">${feedback}</div>
-      </div>
-    </form>
+    <div class="mb-3 text-start">
+      <label class="form-label fw-semibold">${title}</label>
+      <input 
+        type="${type}"
+        class="form-control"
+        placeholder="${placeholder}"
+        ${required ? "required" : ""}
+        ${minLength ? `minlength="${minLength}"` : ""}
+        ${maxLength ? `maxlength="${maxLength}"` : ""}
+        ${pattern ? `pattern="${pattern}"` : ""}
+      >
+      <div class="valid-feedback">Se ve bien!</div>
+      <div class="invalid-feedback">${feedback}</div>
+    </div>
   `;
 
   return textInputHTML;
