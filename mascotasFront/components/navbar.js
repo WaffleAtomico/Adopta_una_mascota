@@ -3,10 +3,10 @@ export function createNavbar(color = "#198754") {
     const links = ["Inicio", "Mascotas", "Adoptar", "Contacto"];
 
     const icons = [
-        "bi bi-house-door",
-        "bi bi-heart-pulse",
-        "bi bi-paw",
-        "bi bi-envelope"
+        "bi bi-house-door-fill",
+        "bi bi-heart-pulse-fill",
+        "fa-solid fa-paw",
+        "bi bi-envelope-fill"
     ];
 
     const navbarHTML = `

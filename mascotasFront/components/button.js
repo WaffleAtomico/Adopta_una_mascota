@@ -3,16 +3,20 @@ export function createButton({
     color = "primary", 
     size = "md", 
     type = "button", //Puede ser submit
-    icon = "", 
+    iconleft = "", 
+    iconright = "", 
     outlined = false 
 } = {}) {
     const btnType = outlined ? `btn-outline-${color}` : `btn-${color}`;
     const btnSize = size === "sm" || size === "lg" ? `btn-${size}` : "";
-    
+
     const buttonHTML = `
-        <button type="${type}" class="btn ${btnType} ${btnSize} d-flex align-items-center justify-content-center mx-auto d-block gap-2">
-            ${icon ? `<i class="${icon}"></i>` : ""}
+        <button 
+            type="${type}" 
+            class="btn ${btnType} ${btnSize} d-flex align-items-center justify-content-center mx-auto d-block gap-2">
+            ${iconleft ? `<i class="${iconleft}"></i>` : ""}
             <span>${text}</span>
+            ${iconright ? `<i class="${iconright}"></i>` : ""}
         </button>
     `;
     

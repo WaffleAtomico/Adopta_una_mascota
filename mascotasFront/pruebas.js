@@ -71,4 +71,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const testList = createScrollableList([testButton, testButton, testInput], "Listado elementos");
     testListContainer.innerHTML = testList;
 
+
+    const startButtonContainer = document.getElementById("comenzar-button");
+    const startButton = createButton({text: "Comenzar a visualizar la pagina!", 
+                                        size:"lg", 
+                                        iconright: "bi bi-arrow-90deg-right", 
+                                        color:"success", 
+                                        outlined: true})
+    startButtonContainer.innerHTML = startButton
 })
