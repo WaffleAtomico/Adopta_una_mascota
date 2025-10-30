@@ -5,13 +5,15 @@ export function createButton({
     type = "button", //Puede ser submit
     iconleft = "", 
     iconright = "", 
-    outlined = false 
+    outlined = false,
+    id = ""
 } = {}) {
     const btnType = outlined ? `btn-outline-${color}` : `btn-${color}`;
     const btnSize = size === "sm" || size === "lg" ? `btn-${size}` : "";
 
     const buttonHTML = `
         <button 
+            id="${id}"
             type="${type}" 
             class="btn ${btnType} ${btnSize} d-flex align-items-center justify-content-center mx-auto d-block gap-2">
             ${iconleft ? `<i class="${iconleft}"></i>` : ""}
