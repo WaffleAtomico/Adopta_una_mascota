@@ -10,16 +10,16 @@ import { createTextInput } from "./components/textInput.js";
 import { createPetCard } from "./components/PetsCard.js"
 import { createScrollableList } from "./components/listOfElements.js";
 import { createForm } from "./components/createForm.js";
+import { createPetProfile } from "./components/pet.profile.js";
 
 //Esto luego será todo un tipo de objeto, de momento lo hice para mantener un poco más limpio el codigo
-export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, edad, sexo) {
+export function crearMascota(nombre, caracter, especie, raza, ubicacion, edad, sexo) {
     return {
         nombre,
         caracter,
         especie,
         raza,
-        ciudad,
-        estado,
+        ubicacion,
         edad,
         sexo
     };
@@ -59,9 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const testPetsCard = document.getElementById("Tarjetas");
     const mascotas = [
-        crearMascota("Firulais", "Juguetón", "Perro", "Pastor", "Guadalajara", "Jalisco", "3 años", "Femenino"),
-        crearMascota("Arya", "Sociable", "Gato", "Persa", "Monterrey", "Nuevo León", "1 año", "Femenino"),
-        crearMascota("Zeus", "Enérgico", "Perro", "Chihuahua", "Mérida", "Yucatán", "5 años", "Masculino")
+        crearMascota("Firulais", "Juguetón", "Perro", "Pastor", "Guadalajara, Jalisco", "3 años", "Femenino"),
+        crearMascota("Arya", "Sociable", "Gato", "Persa", "Monterrey, Nuevo León", "1 año", "Femenino"),
+        crearMascota("Zeus", "Enérgico", "Perro", "Chihuahua", "Mérida, Yucatán", "5 años", "Masculino")
     ];
     mascotas.forEach((mascota) => {
         const testTarjetas = createPetCard(mascota);
@@ -91,6 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
         outlined: true
     })
     startButtonContainer.innerHTML = startButton
-
+    
+    const testPetsProfileContainer = document.getElementById("perfilMascota")
+    const testPetsProfile = createPetProfile(mascotas[0]);
+    testPetsProfileContainer.innerHTML = testPetsProfile;
 
 })

@@ -1,0 +1,70 @@
+.card {
+    border: none;
+    border-radius: 1erm;
+    height: 100%;
+    margin-bottom: 20px;
+}
+
+.pet-Presentation .card-header{
+    background-color: white;
+    border-bottom: 2px solid;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    padding: 1.5rem;
+}
+
+.profileinformation {
+    text-align: center;
+    padding: 1rem 0.5rem;
+    border-right: 1px solid #dee2e6; 
+}
+
+.petdata {
+    display: block;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #495057;
+}
+
+.carousel-item img {
+    height: 600px;
+    object-fit: cover; 
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.medical-record {
+    background-color: #40e0d0; 
+    color: white;
+    padding: 20px;
+}
+
+.medical-record h5 {
+    font-size: 1.75rem;
+    color: white;
+    padding-left: 1rem;
+}
+
+.medical-record .card-body {
+    border-top: 1px solid rgba(255, 255, 255, 0.5) !important; 
+}
+
+.medical-record .list-group-item {
+    background-color: transparent; 
+    border-color: rgba(255, 255, 255, 0.2) !important; 
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+}
+
+.medical-record .list-group-item span {
+    display: block;
+    font-weight: bold;
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.medical-record .list-group-item p {
+    color: #f0f8ff; 
+    line-height: 1.6;
+}
