@@ -10,7 +10,7 @@ export function createUserProfile(data = {}){
         linkedlin : data.linkedlin || "Hugo Acevedo",
         facebook : data.facebook || "Hugo Acevedo",
         instagram : data.instagram || "H_AJ78",
-        image : data.image || "https://placehold.co/250x25"
+        image : data.image || "https://placehold.co/250x250"
     };
 
     const userProfile = `
@@ -28,7 +28,7 @@ export function createUserProfile(data = {}){
                         </div>
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <b>Nombre Completo:</b>
@@ -48,7 +48,7 @@ export function createUserProfile(data = {}){
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="col-md-4 border-start">
+                                <div class="col-md-2 border-start">
                                     <h6>Redes Sociales</h6>
                                     <ul class="list-unstyled fa-ul">
                                         <li><i class="fa-li fa fa-twitter-square text-info"></i><a href="#">${userData.twitter}</a></li>
