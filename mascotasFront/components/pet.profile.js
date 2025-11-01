@@ -3,7 +3,7 @@ export function createPetProfile(data = {}){
     const petData = {
         nombre: data.nombre || "Nombre",
         sexo: data.sexo || "Hembra",
-        tamaño: data.tamño || "Mediano",
+        tamaño: data.tamaño || "Mediano",
         edad: data.edad || "5 años",
         ubicacion: data.ubicacion || "Guadalajara, Jalisco",
         descripcion: data.descripcion || "Lorem ipsum dolor sit amet...",
@@ -17,8 +17,8 @@ export function createPetProfile(data = {}){
     }
 
     const mainRow = `
-        <div class="row g-0 overflow-hidden">
-            <div class="col-lg-6">
+        <div class="row
+ g-0 overflow-hidden">            <div class="col-lg-6">
                 <div class="lc-block">
                     <div class="carousel slide">
                         <div id="carouselExampleIndicators" class="carousel slide">
