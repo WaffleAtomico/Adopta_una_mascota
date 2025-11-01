@@ -1,7 +1,7 @@
 import { initNavbar } from "../../components/navbar.js";
 import { createPetProfile } from "../../components/pet.profile.js";
 
-export function crearMascota(nombre, tamaño, ubicacion, edad, sexo, descripcion, historialSalud, historiaPrevia, imagenes) {
+function crearMascota(nombre, tamaño, ubicacion, edad, sexo, descripcion, historialSalud, historiaPrevia, imagenes) {
     return {
         nombre,
         tamaño,
