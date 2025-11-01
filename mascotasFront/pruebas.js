@@ -11,6 +11,7 @@ import { createPetCard } from "./components/PetsCard.js"
 import { createScrollableList } from "./components/listOfElements.js";
 import { createForm } from "./components/createForm.js";
 import { createPetProfile } from "./components/pet.profile.js";
+import { createUserProfile } from "./components/user.profile.js";
 
 //Esto luego será todo un tipo de objeto, de momento lo hice para mantener un poco más limpio el codigo
 export function crearMascota(nombre, caracter, especie, raza, ubicacion, edad, sexo) {
@@ -90,8 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     startButtonContainer.innerHTML = startButton
     
-    const testPetsProfileContainer = document.getElementById("perfilMascota")
+    const testPetsProfileContainer = document.getElementById("perfilMascota");
     const testPetsProfile = createPetProfile(mascotas[0]);
     testPetsProfileContainer.innerHTML = testPetsProfile;
 
+    const testUserProfileContainer = document.getElementById("contacto");
+    const testUserProfile = createUserProfile();
+    testUserProfileContainer.innerHTML = testUserProfile;
 })
