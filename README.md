@@ -43,7 +43,14 @@ Ejecuta este archivo en tu navegador para visualizar los componentes creados y p
 ## 🚧 Estado del Proyecto
 
 🔹 En desarrollo activo.  
-Actualmente, nos encontramos en la **fase de construcción de componentes individuales**.  
+Actualmente, nos encontramos en la **fase de construcción del frontend y el backend**.  
+
+En la fase actual del proyecto se desarrolara los componentes necesarios para poner el marcha la applicación web. Ahora enlistare los componentes necesarios para el desarrolo del backend:
+  - API de usuarios
+  - API de mascotas
+  - Base de datos
+  - Encriptación de datos
+  - Rutas Relativas
 
 > 📝 **Nota importante:**  
 > Una vez completados todos los componentes, procederemos a **armar las vistas completas**, conectando cada parte del sistema con sus respectivas funciones visuales y lógicas.
@@ -54,28 +61,27 @@ Actualmente, nos encontramos en la **fase de construcción de componentes indivi
 
 Se recomienda seguir la siguiente convención de trabajo:
 
-- **Editar los archivos HTML de views**, y dejar **cada vista dentro de su propia carpeta**, junto con su archivo **JS** correspondiente.  
-  - Ejemplo:
+- **Editar cada una de las carpetas y desarollar los archivos Js**
+  - Estructura de trabajo
     ```
-    /views
-     ├── home/
-     │   ├── home.html
-     │   └── home.js
-     ├── adopt/
-     │   ├── adopt.html
-     │   └── adopt.js
-     └── register/
-         ├── register.html
-         └── register.js
+    /ADOPTA_UNA_MASCOTA
+    ├── mascotasFront/
+    │   ├── views/
+    |
+    └── src/
+      ├── Config/               
+      ├── Controllers/          
+      ├── DTOs/                 
+      ├── Middlewares/          
+      ├── Models/              
+      ├── Repositories/        
+      ├── Routes/               
+      ├── Services/             
+      ├── Types/                
+      └── Utils/               
+
     ```
 
-- Usar **un solo archivo CSS general** para temas globales o ajustes específicos, apoyándose principalmente en **Bootstrap** para la mayor parte del estilo visual.  
-  - Ejemplo:
-    ```
-    /styles/stylesheet.general.css
-    ```
-
----
 
 ## 🚀 Deploy (pendiente)
 
