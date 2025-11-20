@@ -1,0 +1,39 @@
+{
+  "name": "adopta_una_mascota",
+  "version": "1.0.0",
+  "description": "Este proyecto está dirigido a todas aquellas personas que tienen una **mascota** pero, por diferentes razones, **ya no pueden mantenerla**, así como a **todas las mascotas rescatadas** de la calle o de cualquier situación que requiera una segunda oportunidad.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon --inspect ./server.js",
+    "prod" : "node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WaffleAtomico/Adopta_una_mascota.git"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/WaffleAtomico/Adopta_una_mascota/issues"
+  },
+  "homepage": "https://github.com/WaffleAtomico/Adopta_una_mascota#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-validator": "^7.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongose": "^0.0.2-security",
+    "multer": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "nodemonConfig" : {
+    "delay": 1000
+  }
+}
