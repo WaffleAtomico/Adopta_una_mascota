@@ -1,8 +1,9 @@
 import { Schema, model } from "mongoose";
 
-const UsuarioSchema = new Schema({
+const UserSchema = new Schema({
     nombre:{
         type: String,
+        required: true,
         trim: true
     },
     email: {
@@ -70,4 +71,4 @@ UsuariosSchema.pre('save', function (next) {
     next();
 });
 
-export default model('Usuario', UsuarioSchema);
+export default model('User', UserSchema);
