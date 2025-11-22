@@ -9,6 +9,6 @@ class ConfigService {
     }
 }
 
-const ConfigService = new ConfigService();
+const configService = new ConfigService();
 
-export default ConfigService;
+export default configService;
