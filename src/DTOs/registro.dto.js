@@ -1,17 +1,18 @@
 import { checkSchema } from "express-validator";
+import { Roles } from "../Types/roles.types.js";
 
 /**
- * Esquema de validación para la creación de un usuario.
+ * Esquema de validación para el registro de un nuevo usuario.
  * 
- * Este esquema se utiliza con express-validator para asegurar que los datos
- * enviados en el cuerpo de la solicitud cumplan con los requisitos mínimos
- * antes de ser procesados o almacenados en la base de datos.
+ * Este esquema define las reglas que deben cumplirse en el cuerpo (body)
+ * de la solicitud HTTP para registrar un nuevo usuario en el sistema.
  * 
  * Campos validados:
  * 
  * - nombre:
  *   - Opcional, pero si se envía no puede estar vacío.
  *   - Se eliminan espacios en blanco al inicio y final.
+ *   - Error: "El nombre no puede estar vacío"
  * 
  * - apellidoPaterno:
  *   - Obligatorio, no puede estar vacío.
@@ -23,6 +24,10 @@ import { checkSchema } from "express-validator";
  *   - Se convierte a minúsculas automáticamente.
  *   - Error: "El email no es válido"
  * 
+ * - password:
+ *   - Obligatorio, debe tener entre 8 y 16 caracteres.
+ *   - Error: "La contraseña debe tener entre 8 y 16 caracteres"
+ * 
  * - numero:
  *   - Obligatorio, no puede estar vacío.
  *   - Se eliminan espacios en blanco al inicio y final.
@@ -32,18 +37,9 @@ import { checkSchema } from "express-validator";
  *   - Opcional, por defecto es 'celular'.
  *   - Debe ser uno de: 'celular', 'casa', 'trabajo'.
  *   - Error: "Tipo de teléfono no válido"
- * 
- * - perfil:
- *   - Opcional, URL de la imagen de perfil.
- * 
- * - ciudad:
- *   - Opcional, se eliminan espacios en blanco.
- * 
- * - estado:
- *   - Opcional, se eliminan espacios en blanco.
  */
 
-export const crearUsuarioDTO = checkSchema({
+export const registroDTO = checkSchema({
     nombre: {
         optional: true,
         trim: true,
@@ -69,6 +65,12 @@ export const crearUsuarioDTO = checkSchema({
         },
         normalizeEmail: true,
     },
+    password: {
+        isLength: {
+            options: { min: 8, max: 16 },
+            errorMessage: 'La contraseña debe tener entre 8 y 16 caracteres',
+        },
+    },
     numero: {
         notEmpty: {
             errorMessage: 'El número de teléfono es obligatorio',
@@ -85,19 +87,5 @@ export const crearUsuarioDTO = checkSchema({
             errorMessage: 'Tipo de teléfono no válido',
         },
         default: 'celular',
-    },
-    perfil: {
-        optional: true,
-        isURL: {
-            errorMessage: 'La URL de la imagen de perfil no es válida',
-        },
-    },
-    ciudad: {
-        optional: true,
-        trim: true,
-    },
-    estado: {
-        optional: true,
-        trim: true,
     },
 });
