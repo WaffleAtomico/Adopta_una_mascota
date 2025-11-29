@@ -11,6 +11,7 @@
  * @property {string} OWNER El rol con permisos limitados, asociado a un usuario final.
  */
 export const Roles = Object.freeze({
-    // ADMIN : 'ADMIN',
-    OWNER: 'OWNER'
+    ADMIN : 'ADMIN',
+    OWNER: 'OWNER',
+    USER: 'USER',
 });
