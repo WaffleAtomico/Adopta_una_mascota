@@ -3,9 +3,9 @@ import mascotaRepository from "../Repositories/mascota.repository";
 class MascotasService {
     async conseguirMascotas(filters){
         try {
-            const {paginationPets, currentPage, totalPages, totalProducts} = await mascotaRepository.conseguirMascotas(filters);
+            const {mascotas, totalMascotas, totalPaginas, paginaActual} = await mascotaRepository.obtenerMascotas(filters);
             
-            return {paginationPets, currentPage, totalPages, totalProducts};
+            return {mascotas, totalMascotas, totalPaginas, paginaActual};
         } catch (error) {
             throw error;
         }

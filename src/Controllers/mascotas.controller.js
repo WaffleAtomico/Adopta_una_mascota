@@ -2,13 +2,13 @@ import { request, response } from "express";
 import mascotasService from "../Services/mascotas.service";
 
 export const conseguirMascotas = async(req = request, res = response) => {
-    const {paginationPets, currentPage, totalPages, totalProducts} = await mascotasService.conseguirMascotas(req.query);
+    const {mascotas, totalMascotas, totalPaginas, paginaActual} = await mascotasService.conseguirMascotas(req.query);
     res.status(200).json({
         success: true,
-        paginationPets, 
-        currentPage, 
-        totalPages, 
-        totalProducts
+        mascotas,
+        totalMascotas,
+        totalPaginas,
+        paginaActual
     });
 }
 
