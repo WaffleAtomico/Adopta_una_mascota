@@ -1,4 +1,6 @@
 import { Schema, model } from "mongoose";
+import {hashPassword, compareHashedPassword} from "../Utils/password.helper.js"
+
 
 const UserSchema = new Schema({
     nombre:{
@@ -12,6 +14,10 @@ const UserSchema = new Schema({
         unique: true,
         lowercase: true,
         match: [/^\S+@\S+\.\S+$/, 'El email no es válido'],
+    },
+    password:{
+        type: String,
+        required: true
     },
     apellidoPaterno: {
         type: String,
@@ -74,5 +80,22 @@ UserSchema.pre('save', function (next) {
     this.updatedAt = Date.now();
     next();
 });
+
+UserSchema.pre('save', async function (next){
+    const user = this;
+    if(!user.isModified('password')){
+        return next();
+    }
+
+    try {
+        const hash = await hashPassword(user.password);
+        user.password = hash;
+        next();
+    } catch (error) {
+        next(error);
+    }
+});
+
+UserSchema.methods.compararPassword = compareHashedPassword;
 
 export default model('User', UserSchema);

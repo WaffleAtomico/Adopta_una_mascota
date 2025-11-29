@@ -8,15 +8,15 @@ const router = Router();
 
 router.use(validarToken);
 
-router.get("/mascotas", conseguirMascotas);
+router.get("/", conseguirMascotas);
 
-router.post("/mascotas",[validarRol([Roles.ADMIN])], crearMascotas);
+router.post("/",[validarRol([Roles.ADMIN])], crearMascotas);
 
-router.get("/mascotas/:id",[validarRol([Roles.ADMIN, Roles.USER])] ,buscarMascota);
+router.get("/:id",[validarRol([Roles.ADMIN, Roles.USER])] ,buscarMascota);
 
-router.put("/mascotas/:id",[validarRol([Roles.ADMIN, Roles.OWNER])] ,actualizarMascota);
+router.put("/:id",[validarRol([Roles.ADMIN, Roles.OWNER])] ,actualizarMascota);
 
-router.delete("/mascotas/:id", [validarRol([Roles.ADMIN])], borrarMascota);
+router.delete("/:id", [validarRol([Roles.ADMIN])], borrarMascota);
 
 export default router;
 

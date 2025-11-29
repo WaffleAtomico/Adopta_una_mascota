@@ -63,6 +63,12 @@ export const crearUsuarioDTO = checkSchema({
         },
         trim: true,
     },
+    password: {
+      isLength:{
+        options: {min: 8, max:16},
+        errorMessage: 'La contraseña no puede ser mayor a 16 ni menor a 8 caracteres'
+      }
+    },
     email: {
         isEmail: {
             errorMessage: 'El email no es válido',
