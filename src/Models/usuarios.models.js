@@ -13,22 +13,6 @@ const UserSchema = new Schema({
         lowercase: true,
         match: [/^\S+@\S+\.\S+$/, 'El email no es válido'],
     },
-    fechaIngreso: {
-        type: Date,
-        required: true,
-        default: Date.now,
-        immutable: true
-    },
-    deletedAt: {
-        type: Date,
-        default: null,
-        select: false
-    },
-    isDeleted: {
-        type: Boolean,
-        default: false,
-        select: false 
-    },
     apellidoPaterno: {
         type: String,
         required: true,
@@ -58,15 +42,35 @@ const UserSchema = new Schema({
         type: String,
         trim: true,
         default: null
+    },
+    updatedAt: {
+        type: Date,
+        default: Date.now(),
+        select: false
+    },
+    deletedAt: {
+        type: Date,
+        default: null,
+        select: false
+    },
+    isDeleted: {
+        type: Boolean,
+        default: false,
+        select: false 
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now,
+        immutable: true
     }
 });
 
-UsuariosSchema.pre('find', function (next){ 
+UserSchema.pre('find', function (next){ 
     this.where({isDeleted: false});
     next();
 });
 
-UsuariosSchema.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
     this.updatedAt = Date.now();
     next();
 });

@@ -52,29 +52,23 @@ const petSchema = new Schema({
     type: Boolean,
     default: true
   },
-  fechaIngreso: {
-    type: Date,
-    default: Date.now
-  },
-
   peso: Number,
-
   esterilizado: { 
     type: Boolean, 
     default: false 
-},
+  },
   vacunado: { 
     type: Boolean, 
     default: false 
-},
+  },
   desparasitado: { 
     type: Boolean, 
     default: false 
-},
+  },
   microchip: { 
     type: Boolean, 
     default: false 
-},
+  },
   nivelActividad: {
     type: String,
     enum: ["bajo", "medio", "alto"]
@@ -96,10 +90,40 @@ const petSchema = new Schema({
   adoptadoPor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
+  },
+  isDeleted: {
+    type: Boolean,
+    default: false,
+    select: false
+  },
+  deletedAt:{
+    type: Date,
+    default: null,
+    select: false
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+    immutable: true
+  },
+  updatedAt: {
+    type: Date,
+    default: Date.now(),
+    select: false
   }
 },
 {
   timestamps: true 
+});
+
+petSchema.pre('find', function (next) {
+    this.where({isDeleted: false});
+    next();
+});
+
+petSchema.pre('save', function(next){
+  this.updateAt = Date.now();
+  next();
 });
 
 export default mongoose.model("Pet", petSchema);
