@@ -1,7 +1,7 @@
 import { request, response } from "express";
 
 import { Roles } from "../Types/roles.types.js";
-import {verificarToken} from '../utils/jwt.generator.js';
+import {verificarToken} from '../Utils/jwt.generator.js';
 /**
  * Decodifica una cadena Base64 que se espera contenga un objeto JSON y lo convierte a un objeto JavaScript.
  *
