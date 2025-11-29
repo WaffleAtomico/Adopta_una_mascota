@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import configService from "../utils/config.service.js";
+import configService from "../Utils/config.service.js";
 
 const Status = Object.freeze({
   DESCONECTADO: "desconectado",
