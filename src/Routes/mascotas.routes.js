@@ -12,11 +12,10 @@ router.get("/", conseguirMascotas);
 
 router.post("/",[validarRol([Roles.ADMIN])], crearMascotas);
 
-router.get("/:id",[validarRol([Roles.ADMIN, Roles.USER])] ,buscarMascota);
+router.get("/:id",[validarRol([Roles.ADMIN, Roles.USER, Roles.OWNER])] ,buscarMascota);
 
 router.put("/:id",[validarRol([Roles.ADMIN, Roles.OWNER])] ,actualizarMascota);
 
 router.delete("/:id", [validarRol([Roles.ADMIN])], borrarMascota);
 
 export default router;
-
