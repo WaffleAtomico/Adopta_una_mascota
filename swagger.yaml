@@ -1,0 +1,277 @@
+openapi: 3.0.0
+info:
+  title: API de Gestión de Mascotas
+  description: |
+    API para la gestión de mascotas con autenticación y control de roles.
+    Incluye operaciones CRUD para el manejo de mascotas y usuarios.
+  version: 1.0.0
+  contact:
+    name: Soporte
+    email: soporte@example.com
+
+servers:
+  - url: http://localhost:3000/api
+    description: Servidor de desarrollo
+  - url: https://api.tudominio.com/api
+    description: Servidor de producción
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    Mascota:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID único de la mascota
+        nombre:
+          type: string
+          description: Nombre de la mascota
+        especie:
+          type: string
+          description: Especie de la mascota
+        raza:
+          type: string
+          description: Raza de la mascota
+        edad:
+          type: number
+          description: Edad de la mascota en años
+        genero:
+          type: string
+          enum: [Macho, Hembra]
+        descripcion:
+          type: string
+        publicadoPor:
+          type: string
+          format: ObjectId
+          description: ID del usuario que publicó la mascota
+        adoptadoPor:
+          type: string
+          format: ObjectId
+          description: ID del usuario que adoptó la mascota
+        isDeleted:
+          type: boolean
+          default: false
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          default: false
+        message:
+          type: string
+
+security:
+  - bearerAuth: []
+
+paths:
+  /Mascotas:
+    get:
+      tags:
+        - Mascotas
+      summary: Obtener lista de mascotas
+      description: Obtiene una lista paginada de mascotas con filtros opcionales
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Número de página
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Cantidad de resultados por página
+        - in: query
+          name: especie
+          schema:
+            type: string
+          description: Filtrar por especie
+        - in: query
+          name: raza
+          schema:
+            type: string
+          description: Filtrar por raza
+      responses:
+        '200':
+          description: Lista de mascotas obtenida exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  paginationPets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Mascota'
+                  currentPage:
+                    type: number
+                  totalPages:
+                    type: number
+                  totalProducts:
+                    type: number
+
+    post:
+      tags:
+        - Mascotas
+      security:
+        - bearerAuth: [ADMIN]
+      summary: Crear una nueva mascota
+      description: Crea una nueva mascota (requiere rol de ADMIN)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - pet
+              properties:
+                pet:
+                  $ref: '#/components/schemas/Mascota'
+      responses:
+        '201':
+          description: Mascota creada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  mascota:
+                    $ref: '#/components/schemas/Mascota'
+        '401':
+          description: No autorizado
+        '403':
+          description: Permisos insuficientes
+
+  /Mascotas/{id}:
+    get:
+      tags:
+        - Mascotas
+      summary: Obtener una mascota por ID
+      description: Obtiene los detalles de una mascota específica
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota a buscar
+      responses:
+        '200':
+          description: Mascota encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  mascota:
+                    $ref: '#/components/schemas/Mascota'
+        '404':
+          description: Mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    put:
+      tags:
+        - Mascotas
+      security:
+        - bearerAuth: [ADMIN, OWNER]
+      summary: Actualizar una mascota
+      description: Actualiza los datos de una mascota existente (requiere ser ADMIN o OWNER)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota a actualizar
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Mascota'
+      responses:
+        '200':
+          description: Mascota actualizada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  mascota:
+                    $ref: '#/components/schemas/Mascota'
+        '404':
+          description: Mascota no encontrada
+        '403':
+          description: Permisos insuficientes
+
+    delete:
+      tags:
+        - Mascotas
+      security:
+        - bearerAuth: [ADMIN]
+      summary: Eliminar una mascota
+      description: Elimina una mascota del sistema (requiere rol de ADMIN)
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota a eliminar
+      responses:
+        '200':
+          description: Mascota eliminada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  mascota:
+                    $ref: '#/components/schemas/Mascota'
+        '404':
+          description: Mascota no encontrada
+        '403':
+          description: Permisos insuficientes
+
+  /User:
+    # Aquí puedes agregar la documentación de los endpoints de usuarios
+    # Basado en tu archivo de rutas de usuarios
+
+tags:
+  - name: Mascotas
+    description: Operaciones relacionadas con la gestión de mascotas
+  - name: Usuarios
+    description: Operaciones relacionadas con la gestión de usuarios
