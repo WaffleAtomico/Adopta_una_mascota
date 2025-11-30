@@ -30,7 +30,10 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^9.0.0",
     "mongose": "^0.0.2-security",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
