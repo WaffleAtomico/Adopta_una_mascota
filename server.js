@@ -8,8 +8,10 @@ import { requestLogs } from "./src/Middlewares/reques.log.js"
 import { fileLogger } from "./src/Middlewares/file.logger.js"
 import { handleServerErrors } from "./src/Middlewares/handle.server.errors.js"
 import cookieParser from "cookie-parser";
+import database from "./src/Config/database.js";
 
 const app = express();
+database.conectar();
 
 app.use(express.static('public'));
 

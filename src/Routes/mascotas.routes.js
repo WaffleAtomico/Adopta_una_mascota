@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { crearMascotas, conseguirMascotas, buscarMascota, actualizarMascota } from "../Controllers/mascotas.controller.js";
+import { crearMascotas, conseguirMascotas, buscarMascota, actualizarMascota, borrarMascota } from "../Controllers/mascotas.controller.js";
 import { validarToken } from "../Middlewares/validar.token.js";
 import { validarRol } from '../Middlewares/validar.rol.js';
 import { Roles } from '../Types/roles.types.js';
