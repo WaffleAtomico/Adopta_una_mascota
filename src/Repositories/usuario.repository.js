@@ -13,7 +13,9 @@ class UsuarioRepository {
     
     async getUserById(id) {
         try {
-            return await User.findById(id).select('-password');
+            return await User.findById(id)
+                .select('-password')
+                .populate('rol', 'nombre');
         } catch (error) {
             throw error;
         }
@@ -21,7 +23,8 @@ class UsuarioRepository {
     
     async getUserByEmail(email) {
         try {
-            return await User.findOne({ email });
+            return await User.findOne({ email })
+                .populate('rol', 'nombre');
         } catch (error) {
             throw error;
         }

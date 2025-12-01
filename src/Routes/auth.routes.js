@@ -8,6 +8,6 @@ router.post('/login', login);
 
 router.post('/register', register);
 
-router.get('/me', validarToken, getMe);
+router.get('/me', validarToken(['ADMIN','USER','OWNER']), getMe);
 
 export default router;

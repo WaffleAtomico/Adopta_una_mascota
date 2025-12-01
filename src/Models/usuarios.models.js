@@ -39,8 +39,7 @@ const UserSchema = new Schema({
             type: String,
             required: false,
             trim: true,
-            unique: true,
-            sparse: true,
+            unique: false,
         }
     },
     perfil:{

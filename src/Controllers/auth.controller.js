@@ -53,12 +53,11 @@ export const register = async (req = request, res = response) => {
 
 export const getMe = async (req = request, res = response) => {
   try {
-
     const user = {
       id: req.usuario.id,
       email: req.usuario.email,
       nombre: req.usuario.nombre,
-      tipo: req.usuario.role
+      tipo: req.usuario.rol
     };
 
     res.status(200).json({
