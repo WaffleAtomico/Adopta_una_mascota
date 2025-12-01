@@ -32,7 +32,7 @@ class AuthService {
       const token = generarJWT({ 
         id: user._id, 
         email: user.email, 
-        rol: user.rol 
+        rol: user.rol.nombre 
       });
 
       return { 
