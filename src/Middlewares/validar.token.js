@@ -14,8 +14,6 @@ export const validarToken = (roles = []) => {
     try {
       const token = extractToken(req); //si
 
-      console.log(token)
-      
       if (!token) {
         if (req.baseUrl.includes('api')) {
           return res.status(401).json({

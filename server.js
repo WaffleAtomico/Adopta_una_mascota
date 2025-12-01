@@ -51,6 +51,7 @@ app.use('/api-docs',
 // Rutas de la aplicación
 app.use(viewsRouter);
 
+app.use("/api/auth", authRouter);
 app.use("/api/Mascotas", mascotasRouter);
 app.use("/api/User", userRouter);
 app.use(viewsRouter);
