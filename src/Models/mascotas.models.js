@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 
-const petSchema = new Schema({
+const PetSchema = new Schema({
   nombre: {
     type: String,
     required: true,
@@ -116,14 +116,14 @@ const petSchema = new Schema({
   timestamps: true 
 });
 
-petSchema.pre('find', function (next) {
+PetSchema.pre('find', function (next) {
     this.where({isDeleted: false});
     next();
 });
 
-petSchema.pre('save', function(next){
+PetSchema.pre('save', function(next){
   this.updateAt = Date.now();
   next();
 });
 
-export default model("Pet", petSchema);
+export default model("Pet", PetSchema);
