@@ -15,6 +15,7 @@ class AuthService {
       const user = await usuarioRepository.getUserByEmail(email.toLowerCase());
 
       if (!user) {
+        console.log(user)
         return {
           error: "Credenciales inválidas"
         };
@@ -23,6 +24,7 @@ class AuthService {
       const isMatch = await user.compararPassword(password);
       
       if (!isMatch) {
+        console.log(isMatch)
         return { error: "Credenciales inválidas" };
       }
 
@@ -30,7 +32,7 @@ class AuthService {
       const token = generarJWT({ 
         id: user._id, 
         email: user.email, 
-        role: user.tipo 
+        rol: user.rol 
       });
 
       return { 
@@ -39,7 +41,7 @@ class AuthService {
           id: user._id,
           email: user.email,
           nombre: user.nombre,
-          tipo: user.tipo
+          rol: user.rol
         }
       };
     } catch (error) {
@@ -55,20 +57,25 @@ class AuthService {
       if (existingUser) {
         return { error: "El correo ya está registrado" };
       }
-      const defaultRole = await Rol.findOne({ nombre: userData.rol || Roles.USER });
+
+      console.log(userData)
+
+      const defaultRole = await Rol.findOne({ nombre: userData.rol });
       if (!defaultRole) {
         return { error: "Rol no válido" };
       }
-
+      
       const newUser = await usuarioRepository.createUser({
         ...userData,
-        rol: defaultRole._id,
+        rol: defaultRole._id,  
       });
 
+      const userWithRole = await usuarioRepository.getUserById(newUser._id);
+      
       const token = generarJWT({ 
         id: newUser._id, 
         email: newUser.email, 
-        role: newUser.tipo 
+        rol: userWithRole.rol.nombre // Use the role name for the JWT
       });
 
       return { 
@@ -77,7 +84,7 @@ class AuthService {
           id: newUser._id,
           email: newUser.email,
           nombre: newUser.nombre,
-          tipo: newUser.tipo
+          rol: newUser.rol
         }
       };
     } catch (error) {

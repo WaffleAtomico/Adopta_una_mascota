@@ -62,11 +62,11 @@ components:
         email:
           type: string
           format: email
-          example: usuario@example.com
+          example: juan@example.com
         password:
           type: string
           format: password
-          example: contraseña123
+          example: contraseñaSegura123
     RegisterRequest:
       type: object
       required:
@@ -86,7 +86,7 @@ components:
           type: string
           format: password
           example: contraseñaSegura123
-        tipo:
+        rol:
           type: string
           enum: [ADMIN, USER, OWNER]
           example: USER
@@ -107,7 +107,7 @@ components:
               type: string
             nombre:
               type: string
-            tipo:
+            rol:
               type: string
     ErrorResponse:
       type: object

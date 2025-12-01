@@ -33,15 +33,15 @@ export const verificarToken = (token) => {
             throw new Error('Token no proporcionado');
         }
 
-        // Eliminar 'Bearer ' si está presente
         const tokenParts = token.split(' ');
         const tokenValue = tokenParts.length === 2 ? tokenParts[1] : token;
 
-        const decoded = jwt.verify(tokenValue, configService.JWT_SECRET);
+        const decoded = jwt.verify(tokenValue, configService.SECRET);
+        
         return {
             id: decoded.id,
             email: decoded.email,
-            role: decoded.role
+            rol: decoded.rol
         };
     } catch (error) {
         console.error('Error al verificar el token JWT:', error.message);
