@@ -1,35 +1,66 @@
-
 import jwt from 'jsonwebtoken';
-
 import configService from "./config.service.js";
 
-
-export const generarJWT = (payload, expiresIn = '1h') => {
+/**
+ * Genera un token JWT con el payload proporcionado
+ * @param {Object} payload - Datos a incluir en el token
+ * @param {string} [expiresIn='24h'] - Tiempo de expiración del token
+ * @returns {string} Token JWT firmado
+ */
+export const generarJWT = (payload, expiresIn = '24h') => {
     try {
-        
-        const opciones = {
-            expiresIn : expiresIn,
-            issuer : 'mascotas-api' 
+        const options = {
+            expiresIn,
+            issuer: 'mascotas-api',
+            algorithm: 'HS256'
         };
 
-        const token = jwt.sign(payload, configService.SECRET, opciones);
-
-        console.log(`JWT: ${token}`);
-        return token;
+        return jwt.sign(payload, configService.SECRET, options);
     } catch (error) {
-        console.error(`Error durante la generacion del token. Error: ${error.message}`);
-        return null;
+        console.error('Error al generar el token JWT:', error);
+        throw new Error('Error al generar el token de autenticación');
     }
-}
+};
 
+/**
+ * Verifica y decodifica un token JWT
+ * @param {string} token - Token JWT a verificar
+ * @returns {Object|null} Datos decodificados del token o null si es inválido
+ */
 export const verificarToken = (token) => {
     try {
-        
-        const decodedData = jwt.verify(token, configService.SECRET);
+        if (!token) {
+            throw new Error('Token no proporcionado');
+        }
 
-        return decodedData;
+        // Eliminar 'Bearer ' si está presente
+        const tokenParts = token.split(' ');
+        const tokenValue = tokenParts.length === 2 ? tokenParts[1] : token;
+
+        const decoded = jwt.verify(tokenValue, configService.JWT_SECRET);
+        return {
+            id: decoded.id,
+            email: decoded.email,
+            role: decoded.role
+        };
     } catch (error) {
-        console.error(`Error de verificacion de JWT. Error: ${error.message}`);
+        console.error('Error al verificar el token JWT:', error.message);
         return null;
     }
-}
+};
+
+/**
+ * Middleware para extraer el token del encabezado de autorización
+ * @param {Object} req - Objeto de solicitud de Express
+ * @returns {string|null} Token JWT o null si no se encuentra
+ */
+export const extractToken = (req) => {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'Bearer') {
+        return req.headers.authorization.split(' ')[1];
+    } else if (req.query && req.query.token) {
+        return req.query.token;
+    } else if (req.cookies && req.cookies.token) {
+        return req.cookies.token;
+    }
+    return null;
+};

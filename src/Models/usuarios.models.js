@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-import {hashPassword, compareHashedPassword} from "../Utils/password.helper.js"
+import { Schema, model, Types } from "mongoose";
+import { hashPassword, compareHashedPassword } from "../Utils/password.helper.js"
 
 
 const UserSchema = new Schema({
@@ -21,19 +21,27 @@ const UserSchema = new Schema({
     },
     apellidoPaterno: {
         type: String,
-        required: true,
+        required: false,
         trim: true,
     },
-    numero:{
-        type : String,
-        required: true,
-        trim: true,
-        unique: true,
+    rol: {
+        type: Types.ObjectId,
+        ref: 'Rol',
+        required: true
     },
-    tipo:{
-        type: String,
-        enum: ['celular', 'casa', 'trabajo'],
-        default: 'celular'
+    telefono: {
+        tipo: {
+            type: String,
+            enum: ['celular', 'casa', 'trabajo'],
+            default: 'celular'
+        },
+        numero: {
+            type: String,
+            required: false,
+            trim: true,
+            unique: true,
+            sparse: true,
+        }
     },
     perfil:{
         type: String, //URL de la imagen
@@ -71,30 +79,46 @@ const UserSchema = new Schema({
     }
 });
 
-UserSchema.pre('find', function (next){ 
-    this.where({isDeleted: false});
-    next();
+UserSchema.pre('find', function(next) {
+    this.populate('rol', 'nombre -_id');
+    this.where({ isDeleted: false });
 });
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('findOne', function(next) {
+    this.populate('rol', 'nombre -_id');
+    this.where({ isDeleted: false });
+    // next()
+});
+
+UserSchema.pre('save', function(next) {
     this.updatedAt = Date.now();
-    next();
+    // next();
 });
 
-UserSchema.pre('save', async function (next){
-    const user = this;
-    if(!user.isModified('password')){
-        return next();
+// Update the save middleware to handle next properly
+UserSchema.pre('save', function(next) {
+    this.updatedAt = Date.now();
+    // next(); 
+});
+
+UserSchema.pre('save', async function() {
+    if (!this.isModified('password')) {
+        return; 
     }
 
     try {
-        const hash = await hashPassword(user.password);
-        user.password = hash;
-        next();
+        this.password = await hashPassword(this.password);
     } catch (error) {
-        next(error);
+        throw error;
     }
 });
+
+UserSchema.methods.tieneRol = function(roles) {
+    if (!Array.isArray(roles)) {
+        roles = [roles];
+    }
+    return roles.includes(this.rol?.nombre);
+};
 
 UserSchema.methods.compararPassword = compareHashedPassword;
 
