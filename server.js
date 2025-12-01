@@ -26,14 +26,12 @@ database.conectar();
 
 const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
 
-database.conectar();
-
+app.use(requestLogs);
+app.use(fileLogger);
 app.use(express.static('public'));
 
 //Midlewares Globales
 app.use(express.json());
-app.use(requestLogs);
-app.use(fileLogger);
 app.use(cookieParser());
 
 app.use(cors());
@@ -54,13 +52,10 @@ app.use(viewsRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/Mascotas", mascotasRouter);
 app.use("/api/User", userRouter);
-app.use(viewsRouter);
+
 //Manejar los errores del server
 app.use(handleServerErrors);
 
-//Rutas
-
-//Rutas de las vistas
 const host = configService.HOST;
 const port = configService.PORT;
 

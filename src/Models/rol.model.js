@@ -23,9 +23,8 @@ const RolSchema = new Schema({
 });
 
 // Middleware para actualizar la fecha de actualización antes de guardar
-RolSchema.pre('save', function(next) {
+RolSchema.pre('save', function() {
     this.fechaActualizacion = new Date();
-    next();
 });
 
 export default model('Rol', RolSchema);

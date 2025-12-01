@@ -1,4 +1,5 @@
 import MascotaModel from "../Models/mascotas.models.js";
+import User from "../Models/usuarios.models.js";
 
 class MascotaRepository {
     async obtenerMascotas(query = {}) {
@@ -30,6 +31,14 @@ class MascotaRepository {
 
     async crearMascota(mascota){
         try {
+            if (mascota?.publicadoPor) {
+                const usuario = await User.findById(mascota.publicadoPor);
+
+                if (!usuario) {
+                    throw new Error("El usuario especificado en 'publicadoPor' no existe");
+                }
+            }
+
             const nuevaMascota = new MascotaModel(mascota);
             return await nuevaMascota.save();
         } catch (error) {
@@ -39,7 +48,8 @@ class MascotaRepository {
 
     async buscarMascota(id){
         try {
-           return await MascotaModel.findById(id);
+            const mascota = await MascotaModel.findById(id);
+            return mascota;
         } catch (error) {
             throw error;
         }
