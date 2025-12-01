@@ -5,7 +5,7 @@ class ConfigService {
         this.PORT = process.env.PORT || 3000;
         this.DATABASE_URI = process.env.DATABASE_URI;
         this.SECRET = process.env.SECRET;
-        this.PRODUCTIVO = procces.env.ENTORNO === 'PRODUCTION';
+        this.PRODUCTIVO = process.env.ENTORNO === 'PRODUCTION';
         this.HOST = this.PRODUCTIVO ? '0.0.0.0' : process.env.HOST;
     }
 }

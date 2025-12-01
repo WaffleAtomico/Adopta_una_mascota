@@ -1,16 +1,37 @@
+<<<<<<< HEAD
 import express from "express";
 import cors from 'cors';
 import mascotasRouter from "./src/Routes/mascotas.routes.js";
 import userRouter from "./src/Routes/usuarios.routes.js";
+=======
+import express from "express"
+import cors from "cors"
+import swaggerUi from 'swagger-ui-express';
+import YAML from 'yamljs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import mascotasRouter from "./src/Routes/mascotas.routes.js"
+import userRouter from "./src/Routes/usuarios.routes.js"
+>>>>>>> main
 import configService from "./src/Utils/config.service.js";
 import viewsRouter from "./src/Routes/views.routes.js";
 import { requestLogs } from "./src/Middlewares/reques.log.js";
 import { fileLogger } from "./src/Middlewares/file.logger.js";
 import { handleServerErrors } from "./src/Middlewares/handle.server.errors.js";
 import cookieParser from "cookie-parser";
+<<<<<<< HEAD
 import database from './src/Config/database.js'
+=======
+import database from "./src/Config/database.js";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+>>>>>>> main
 
 const app = express();
+database.conectar();
+
+const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
 
 database.conectar();
 
@@ -22,15 +43,32 @@ app.use(requestLogs);
 app.use(fileLogger);
 app.use(cookieParser());
 
+<<<<<<< HEAD
 //CORS
 app.use(cors);
 
+=======
+// CORS
+app.use(cors());
+
+// Ruta para la documentación de la API
+app.use('/api-docs', 
+  swaggerUi.serve, 
+  swaggerUi.setup(swaggerDocument, {
+    customCss: '.swagger-ui .topbar { display: none }',
+    customSiteTitle: 'Documentación de la API de Mascotas',
+    customfavIcon: '/favicon.ico'
+  })
+);
+
+// Rutas de la aplicación
+app.use(viewsRouter);
+>>>>>>> main
 app.use("/api/Mascotas", mascotasRouter);
 app.use("/api/User", userRouter);
 app.use(viewsRouter);
 //Manejar los errores del server
 app.use(handleServerErrors);
-
 
 //Rutas
 
@@ -39,5 +77,5 @@ const host = configService.HOST;
 const port = configService.PORT;
 
 app.listen(port,host,()=>{
-    console.log(`Servidor a las esucha en http://${host}:${port}`);
+    console.log(`Servidor a las escucha en http://${host}:${port}`);
 });

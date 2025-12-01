@@ -1,5 +1,5 @@
 import { request, response } from "express";
-import mascotasService from "../Services/mascotas.service";
+import mascotasService from "../Services/mascotas.service.js";
 
 export const conseguirMascotas = async(req = request, res = response) => {
     const {mascotas, totalMascotas, totalPaginas, paginaActual} = await mascotasService.conseguirMascotas(req.query);

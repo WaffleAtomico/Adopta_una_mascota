@@ -82,13 +82,13 @@ const petSchema = new Schema({
     default: []
   },
   publicadoPor: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User",
     required: true
   },
   fechaAdopcion: Date,
   adoptadoPor: {
-    type: mongoose.Schema.Types.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: "User"
   },
   isDeleted: {
@@ -126,4 +126,4 @@ petSchema.pre('save', function(next){
   next();
 });
 
-export default mongoose.model("Pet", petSchema);
+export default model("Pet", petSchema);
