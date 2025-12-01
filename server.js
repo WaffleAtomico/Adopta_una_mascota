@@ -5,9 +5,10 @@ import YAML from 'yamljs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mascotasRouter from "./src/Routes/mascotas.routes.js"
+import authRouter from "./src/Routes/auth.routes.js"
 import userRouter from "./src/Routes/usuarios.routes.js"
-import configService from "./src/Utils/config.service.js";
 import viewsRouter from "./src/Routes/views.routes.js";
+import configService from "./src/Utils/config.service.js";
 import { requestLogs } from "./src/Middlewares/reques.log.js"
 import { fileLogger } from "./src/Middlewares/file.logger.js"
 import { handleServerErrors } from "./src/Middlewares/handle.server.errors.js"
@@ -45,8 +46,12 @@ app.use('/api-docs',
 
 // Rutas de la aplicación
 app.use(viewsRouter);
+
+
+app.use("/api/auth", authRouter);
 app.use("/api/Mascotas", mascotasRouter);
 app.use("/api/User", userRouter);
+
 //Manejar los errores del server
 app.use(handleServerErrors);
 
