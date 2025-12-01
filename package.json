@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "nodemon --inspect ./server.js",
-    "prod" : "node ./server.js"
+    "dev": "nodemon --inspect ./server.js",
+    "prod": "node ./server.js"
   },
   "repository": {
     "type": "git",
@@ -22,18 +22,23 @@
   "homepage": "https://github.com/WaffleAtomico/Adopta_una_mascota#readme",
   "dependencies": {
     "bcrypt": "^6.0.0",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "express-validator": "^7.3.1",
     "jsonwebtoken": "^9.0.2",
+    "mongoose": "^9.0.0",
     "mongose": "^0.0.2-security",
-    "multer": "^2.0.2"
+    "multer": "^2.0.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.1.11"
   },
-  "nodemonConfig" : {
+  "nodemonConfig": {
     "delay": 1000
   }
 }

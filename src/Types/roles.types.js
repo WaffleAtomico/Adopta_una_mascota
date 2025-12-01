@@ -12,6 +12,6 @@
  */
 export const Roles = Object.freeze({
     ADMIN : 'ADMIN',
-    OWNER: 'OWNER',
-    USER: 'USER',
+    OWNER: 'OWNER', //Logged user
+    USER: 'USER', //Unlogged user
 });

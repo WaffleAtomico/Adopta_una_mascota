@@ -1,4 +1,4 @@
-import mascotaRepository from "../Repositories/mascota.repository";
+import mascotaRepository from "../Repositories/mascota.repository.js";
 
 class MascotasService {
     async conseguirMascotas(filters){
