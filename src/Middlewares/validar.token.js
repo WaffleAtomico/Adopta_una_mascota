@@ -8,11 +8,11 @@ import Rol from "../Models/rol.model.js";
  * @param {Array} [roles=[]] - Lista de roles permitidos (opcional)
  * @returns {Function} Middleware de Express
  */
+
 export const validarToken = (roles = []) => {
   return async (req = request, res = response, next) => {
-    // console.log(req.header)
     try {
-      const token = extractToken(req); //si
+      const token = extractToken(req); 
 
       if (!token) {
         if (req.baseUrl.includes('api')) {
@@ -26,7 +26,6 @@ export const validarToken = (roles = []) => {
       }
       
       const decoded = verificarToken(token);
-      console.log({decoded})
 
       if (!decoded) {
         if (req.baseUrl.includes('api')) {
@@ -38,11 +37,14 @@ export const validarToken = (roles = []) => {
         console.log("Redirigido");
         return res.redirect('/login');
       }
-      
+
       const userRol = await Rol.findOne({ nombre: decoded.rol || Roles.USER });
-      console.log({userRol})
+      
       if (!userRol) {
-        return { success: false, msg: "Rol no válido" };
+        return res.status(400).json({
+          success: false,
+          msg: "Rol no válido"
+        });
       }
       
       //Validar que el rol del usuario sea valido

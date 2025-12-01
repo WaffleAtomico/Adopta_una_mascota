@@ -78,31 +78,21 @@ const UserSchema = new Schema({
     }
 });
 
-UserSchema.pre('find', function(next) {
+UserSchema.pre('find', function() {
     this.populate('rol', 'nombre -_id');
     this.where({ isDeleted: false });
 });
 
-UserSchema.pre('findOne', function(next) {
+UserSchema.pre('findOne', function() {
     this.populate('rol', 'nombre -_id');
     this.where({ isDeleted: false });
-    // next()
-});
-
-UserSchema.pre('save', function(next) {
-    this.updatedAt = Date.now();
-    // next();
-});
-
-// Update the save middleware to handle next properly
-UserSchema.pre('save', function(next) {
-    this.updatedAt = Date.now();
-    // next(); 
 });
 
 UserSchema.pre('save', async function() {
+    this.updatedAt = Date.now();
+    
     if (!this.isModified('password')) {
-        return; 
+        return;
     }
 
     try {

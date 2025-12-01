@@ -116,14 +116,12 @@ const PetSchema = new Schema({
   timestamps: true 
 });
 
-PetSchema.pre('find', function (next) {
+PetSchema.pre('find', function () {
     this.where({isDeleted: false});
-    next();
 });
 
-PetSchema.pre('save', function(next){
+PetSchema.pre('save', function(){
   this.updateAt = Date.now();
-  next();
 });
 
 export default model("Pet", PetSchema);

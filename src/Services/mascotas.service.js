@@ -24,7 +24,7 @@ class MascotasService {
     async buscarMascota(id) {
         try {
             const mascota = await mascotaRepository.buscarMascota(id);
-            
+
             return mascota;
         } catch (error) {
             throw error;
