@@ -1,12 +1,30 @@
 import MascotaModel from "../Models/mascotas.models.js";
 
 class MascotaRepository {
-    async obtenerMascotas(filters){
+    async obtenerMascotas(query = {}) {
         try {
-            const mascotas = await MascotaModel.find(filters);
-            return mascotas;
+          const { page = 1, limit = 10, ...filters } = query;
+
+          const pageNumber = Number(page) || 1;
+          const limitNumber = Number(limit) || 10;
+          const skip = (pageNumber - 1) * limitNumber;
+
+          const totalMascotas = await MascotaModel.countDocuments(filters);
+          const mascotas = await MascotaModel.find(filters)
+            .skip(skip)
+            .limit(limitNumber)
+            .sort({ createdAt: -1 });
+
+          const totalPaginas = Math.ceil(totalMascotas / limitNumber) || 1;
+
+          return {
+            mascotas,
+            totalMascotas,
+            totalPaginas,
+            paginaActual: pageNumber,
+          };
         } catch (error) {
-            throw error;
+          throw error;
         }
     }
 

@@ -23,6 +23,8 @@ database.conectar();
 
 const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
 
+database.conectar();
+
 app.use(express.static('public'));
 
 //Midlewares Globales
@@ -31,27 +33,12 @@ app.use(requestLogs);
 app.use(fileLogger);
 app.use(cookieParser());
 
-// CORS
-app.use(cors());
+//CORS
+app.use(cors);
 
-// Ruta para la documentación de la API
-app.use('/api-docs', 
-  swaggerUi.serve, 
-  swaggerUi.setup(swaggerDocument, {
-    customCss: '.swagger-ui .topbar { display: none }',
-    customSiteTitle: 'Documentación de la API de Mascotas',
-    customfavIcon: '/favicon.ico'
-  })
-);
-
-// Rutas de la aplicación
-app.use(viewsRouter);
-
-
-app.use("/api/auth", authRouter);
 app.use("/api/Mascotas", mascotasRouter);
 app.use("/api/User", userRouter);
-
+app.use(viewsRouter);
 //Manejar los errores del server
 app.use(handleServerErrors);
 
