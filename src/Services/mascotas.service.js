@@ -21,6 +21,16 @@ class MascotasService {
         }
     }
 
+    async crearMultiplesMascotas(mascotas) {
+        try {
+            const nuevasMascotas = await mascotaRepository.crearMultiplesMascotas(mascotas);
+                
+            return nuevasMascotas;
+        } catch (error) {
+            throw error;
+        }
+    }
+
     async buscarMascota(id) {
         try {
             const mascota = await mascotaRepository.buscarMascota(id);

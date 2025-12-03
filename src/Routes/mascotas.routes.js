@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { crearMascotas, conseguirMascotas, buscarMascota, actualizarMascota, borrarMascota } from "../Controllers/mascotas.controller.js";
+import { crearMascotas, conseguirMascotas, buscarMascota, actualizarMascota, borrarMascota, crearMultiplesMascotas } from "../Controllers/mascotas.controller.js";
 import { validarToken } from "../Middlewares/validar.token.js";
 import { validarRol } from '../Middlewares/validar.rol.js';
 import { Roles } from '../Types/roles.types.js';
@@ -17,7 +17,9 @@ router.use((req, res, next) => {
 // Ruta pública para obtener todas las mascotas
 router.get('/', conseguirMascotas);
 
-router.post("/", validarRol([Roles.ADMIN]), crearMascotas);
+router.post("/", validarRol([Roles.ADMIN, Roles.OWNER]), crearMascotas);
+
+router.post("/multiple", validarRol([Roles.ADMIN]), crearMultiplesMascotas);
 
 router.get("/:id", validarRol([Roles.ADMIN, Roles.USER, Roles.OWNER]), buscarMascota);
 

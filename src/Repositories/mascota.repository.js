@@ -4,17 +4,20 @@ import User from "../Models/usuarios.models.js";
 class MascotaRepository {
     async obtenerMascotas(query = {}) {
         try {
-          const { page = 1, limit = 10, ...filters } = query;
+          const { page = 1, limit = 10, sortBy = 'createdAt', sortOrder = 'desc', ...filters } = query;
 
           const pageNumber = Number(page) || 1;
           const limitNumber = Number(limit) || 10;
           const skip = (pageNumber - 1) * limitNumber;
 
+          const sortOptions = {};
+          sortOptions[sortBy] = sortOrder === 'asc' ? 1 : -1;
+
           const totalMascotas = await MascotaModel.countDocuments(filters);
           const mascotas = await MascotaModel.find(filters)
             .skip(skip)
             .limit(limitNumber)
-            .sort({ createdAt: -1 });
+            .sort(sortOptions);
 
           const totalPaginas = Math.ceil(totalMascotas / limitNumber) || 1;
 
@@ -41,6 +44,30 @@ class MascotaRepository {
 
             const nuevaMascota = new MascotaModel(mascota);
             return await nuevaMascota.save();
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async crearMultiplesMascotas(mascotas){
+        try {
+            const resultados = [];
+            
+            for (const mascota of mascotas) {
+                if (mascota?.publicadoPor) {
+                    const usuario = await User.findById(mascota.publicadoPor);
+
+                    if (!usuario) {
+                        throw new Error(`El usuario especificado en 'publicadoPor' no existe para la mascota: ${mascota.nombre || 'sin nombre'}`);
+                    }
+                }
+
+                const nuevaMascota = new MascotaModel(mascota);
+                const mascotaGuardada = await nuevaMascota.save();
+                resultados.push(mascotaGuardada);
+            }
+
+            return resultados;
         } catch (error) {
             throw error;
         }

@@ -10,6 +10,7 @@ const PetSchema = new Schema({
   especie: {
     type: String,
     required: true,
+    set: (especie) => especie.toLowerCase(),
     enum: ["perro", "gato", "conejo", "ave", "reptil", "otro"]
   },
   raza: {
