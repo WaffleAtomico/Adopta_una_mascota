@@ -25,7 +25,9 @@ router.get("/", validarRol([Roles.ADMIN]), getUsers);
 
 router.get("/:id", validarRol([Roles.ADMIN, Roles.USER, Roles.OWNER]), getUserById);
 
-router.post("/", validarRol([]), createUser);
+
+// router.post("/", validarRol([]), createUser);
+router.post("/", createUser);
 
 router.put("/:id", validarRol([Roles.ADMIN, Roles.OWNER]), updateUser);
 

@@ -56,6 +56,7 @@ export const createUser = async (req = request, res = response) => {
 
 export const updateUser = async (req = request, res = response) => {
     try {
+        
         const updatedUser = await usuarioService.updateUser(req.params.id, req.body);
         
         if (!updatedUser) {

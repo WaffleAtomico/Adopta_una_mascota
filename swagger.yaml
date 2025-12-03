@@ -495,8 +495,8 @@ paths:
         - Usuarios
       summary: Crear un nuevo usuario
       description: Crea un nuevo usuario (solo administradores)
-      security:
-        - bearerAuth: []
+      # security:
+      #   - bearerAuth: []
       requestBody:
         required: true
         content:
