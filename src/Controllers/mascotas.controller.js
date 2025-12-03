@@ -37,6 +37,39 @@ export const crearMascotas = async(req = request, res = response) => {
     }
 }
 
+export const crearMultiplesMascotas = async(req = request, res = response) => {
+    try {
+        const {pets} = req.body;
+        
+        if (!Array.isArray(pets)) {
+            return res.status(400).json({
+                success: false,
+                msg: "El campo 'pets' debe ser un array de mascotas"
+            });
+        }
+
+        if (pets.length === 0) {
+            return res.status(400).json({
+                success: false,
+                msg: "El array de mascotas no puede estar vacío"
+            });
+        }
+
+        const mascotas = await mascotasService.crearMultiplesMascotas(pets);
+        return res.status(201).json({
+            success: true,
+            mascotas,
+            totalCreadas: mascotas.length
+        });
+    } catch (error) {
+        return res.status(500).json({ 
+            msg: "Error al crear múltiples mascotas",
+            success: false,
+            error: error.message 
+        });
+    }
+}
+
 export const buscarMascota = async(req = request, res = response) => {
     try{
         const mascota = await mascotasService.buscarMascota(req.params.id);
