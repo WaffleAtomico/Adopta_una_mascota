@@ -1,4 +1,5 @@
 import usuarioRepository from "../Repositories/usuario.repository.js";
+import Rol from "../Models/rol.model.js";
 
 class UsuarioService {
     async getUsers() {
@@ -18,11 +19,19 @@ class UsuarioService {
                 throw new Error('El correo electrónico ya está registrado', 400);
             }
 
+            if (userData.rol) {
+                const role = await Rol.findOne({ nombre: userData.rol });
+                if (!role) {
+                    throw new Error('Invalid role');
+                }
+                userData.rol = role._id;
+            }
+
             const newUser = await usuarioRepository.createUser(userData);
-            
+
             const userObj = newUser.toObject();
             delete userObj.password;
-            
+
             return userObj;
         } catch (error) {
             throw error;
@@ -32,11 +41,11 @@ class UsuarioService {
     async getUserById(id) {
         try {
             const user = await usuarioRepository.getUserById(id);
-            
+
             if (!user || user.isDeleted) {
                 throw new Error('Usuario no encontrado', 404);
             }
-            
+
             return user;
         } catch (error) {
             throw error;
@@ -58,6 +67,14 @@ class UsuarioService {
                 }
             }
 
+            if (userData.rol) {
+                const role = await Rol.findOne({ nombre: userData.rol });
+                if (!role) {
+                    throw new Error('Invalid role');
+                }
+                userData.rol = role._id;
+            }
+
             const updatedUser = await usuarioRepository.updateUser(id, userData);
             return updatedUser;
         } catch (error) {
@@ -68,11 +85,11 @@ class UsuarioService {
     async deleteUser(id) {
         try {
             const user = await usuarioRepository.getUserById(id);
-            
+
             if (!user || user.isDeleted) {
                 throw new Error('Usuario no encontrado', 404);
             }
-            
+
             const deletedUser = await usuarioRepository.deleteUser(id);
             return { message: 'Usuario eliminado correctamente' };
         } catch (error) {
