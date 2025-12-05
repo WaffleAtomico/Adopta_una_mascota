@@ -28,7 +28,7 @@ const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
 
 app.use(requestLogs);
 app.use(fileLogger);
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'mascotasFront')));
 
 //Midlewares Globales
 app.use(express.json());
