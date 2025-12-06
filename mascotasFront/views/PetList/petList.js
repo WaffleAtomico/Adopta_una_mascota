@@ -1,5 +1,5 @@
 import { initNavbar } from "../../components/navbar.js";
-import { createPetCard } from "../../components/PetsCard.js";
+import { createPetCard, setupPetCardEventListeners } from "../../components/PetsCard.js";
 import { createPagination } from "../../components/pagination.js";
 import { generarSidebarFiltros } from "../../components/sidebar.js";
 
@@ -88,6 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
 
                 petsGrid.innerHTML = htmlTarjetas;
+                
+                // Configurar event listeners para los botones "Mas Sobre mi"
+                setupPetCardEventListeners();
                 
                 const paginationContainer = document.getElementById("pagination-container");
                 if (paginationContainer) {

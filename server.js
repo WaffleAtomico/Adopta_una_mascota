@@ -26,9 +26,10 @@ database.conectar();
 
 const swaggerDocument = YAML.load(path.join(__dirname, 'swagger.yaml'));
 
+app.use(express.static(path.join(__dirname, 'mascotasFront')));
+
 app.use(requestLogs);
 app.use(fileLogger);
-app.use(express.static(path.join(__dirname, 'mascotasFront')));
 
 //Midlewares Globales
 app.use(express.json());
@@ -46,7 +47,6 @@ app.use('/api-docs',
   })
 );
 
-// Rutas de la aplicación
 app.use(viewsRouter);
 
 app.use("/api/auth", authRouter);

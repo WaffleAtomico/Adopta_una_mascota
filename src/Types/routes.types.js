@@ -42,7 +42,7 @@ export const Rutas = Object.freeze({
         '/contacto': `${rutaRaizProyecto}/mascotasFront/views/ContactPage/ContactPage.html`,
         '/postulacion': `${rutaRaizProyecto}/mascotasFront/views/PostulationPage/PostulationPage.html`,
         '/estado': `${rutaRaizProyecto}/mascotasFront/views/StatusPage/StatusPage.html`,
-        '/contacto-dueno': `${rutaRaizProyecto}/mascotasFront/views/PetOwnerContact/PetOwnerContact.html`
+        '/contacto-dueno/:id': `${rutaRaizProyecto}/mascotasFront/views/PetOwnerContact/PetOwnerContact.html`
     },
     /**
      * @constant

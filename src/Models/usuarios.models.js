@@ -56,6 +56,28 @@ const UserSchema = new Schema({
         trim: true,
         default: null
     },
+    redesSociales: {
+        twitter: {
+            type: String,
+            trim: true,
+            default: "No especificado"
+        },
+        facebook: {
+            type: String,
+            trim: true,
+            default: "No especificado"
+        },
+        instagram: {
+            type: String,
+            trim: true,
+            default: "No especificado"
+        },
+        linkedin: {
+            type: String,
+            trim: true,
+            default: "No especificado"
+        }
+    },
     updatedAt: {
         type: Date,
         default: Date.now(),

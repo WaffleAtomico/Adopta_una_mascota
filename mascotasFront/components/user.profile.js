@@ -1,16 +1,16 @@
 export function createUserProfile(data = {}){
     
     const userData = {
-        firstname : data.username || "Hugo Ernesto",
-        lastname : data.name || "Acevedo Juarez",
-        direccion : data.direction || "Av los rosales 3457, Guadalajara, Jalisco. 756321",
-        correo : data.correo || "jilosd@gmail.com",
-        telefono : data.telefono || "33 4689 7594",
-        twitter : data.twitte || "@HLneitor",
-        linkedlin : data.linkedlin || "Hugo Acevedo",
-        facebook : data.facebook || "Hugo Acevedo",
-        instagram : data.instagram || "H_AJ78",
-        image : data.image || "https://placehold.co/250x250"
+        firstname : data.nombre || "Nombre",
+        lastname : data.apellidoPaterno || "Apellido",
+        direccion : `${data.ciudad || "Ciudad"}, ${data.estado || "Estado"}`,
+        correo : data.email || "correo@ejemplo.com",
+        telefono : data.telefono?.numero || "No especificado",
+        twitter : data.redesSociales?.twitter || "No especificado",
+        linkedin : data.redesSociales?.linkedin || "No especificado",
+        facebook : data.redesSociales?.facebook || "No especificado",
+        instagram : data.redesSociales?.instagram || "No especificado",
+        image : data.perfil || "https://placehold.co/250x250"
     };
 
     const userProfile = `
@@ -19,7 +19,7 @@ export function createUserProfile(data = {}){
                     <div class="profile-image-container mb-3">
                         <img src="${userData.image}" alt="Foto de Perfil" class="img-fluid rounded-circle profile-img"> 
                     </div>
-                    <h4>Hugo Ernesto</h4>
+                    <h4>${userData.firstname} ${userData.lastname}</h4>
                 </div>
                 <div class="col-lg-9">
                     <div class="card shadow-sm h-100">
@@ -40,7 +40,7 @@ export function createUserProfile(data = {}){
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <b>Correo:</b>
-                                            <span>${userData.direccion}</span>
+                                            <span>${userData.correo}</span>
                                         </li>
                                         <li class="list-group-item d-flex justify-content-between align-items-center">
                                             <b>Teléfono:</b>
@@ -51,10 +51,15 @@ export function createUserProfile(data = {}){
                                 <div class="col-md-2 border-start">
                                     <h6>Redes Sociales</h6>
                                     <ul class="list-unstyled fa-ul">
-                                        <li><i class="fa-li fa fa-twitter-square text-info"></i><a href="#">${userData.twitter}</a></li>
-                                        <li><i class="fa-li fa fa-linkedin-square text-primary"></i><a href="#">${userData.linkedlin} </a></li>
-                                        <li><i class="fa-li fa fa-facebook-square text-primary"></i><a href="#">${userData.facebook}</a></li>
-                                        <li><i class="fa-li fa fa-instagram text-danger"></i><a href="#">${userData.instagram}</a></li>
+                                        ${userData.twitter && userData.twitter !== "No especificado" ? `<li><i class="fa-li fa fa-twitter-square text-info"></i><a href="#">${userData.twitter}</a></li>` : ''}
+                                        ${userData.linkedin && userData.linkedin !== "No especificado" ? `<li><i class="fa-li fa fa-linkedin-square text-primary"></i><a href="#">${userData.linkedin}</a></li>` : ''}
+                                        ${userData.facebook && userData.facebook !== "No especificado" ? `<li><i class="fa-li fa fa-facebook-square text-primary"></i><a href="#">${userData.facebook}</a></li>` : ''}
+                                        ${userData.instagram && userData.instagram !== "No especificado" ? `<li><i class="fa-li fa fa-instagram text-danger"></i><a href="#">${userData.instagram}</a></li>` : ''}
+                                        ${!userData.twitter || userData.twitter === "No especificado" && 
+                                          !userData.linkedin || userData.linkedin === "No especificado" && 
+                                          !userData.facebook || userData.facebook === "No especificado" && 
+                                          !userData.instagram || userData.instagram === "No especificado" ? 
+                                          '<li class="text-muted">No hay redes sociales configuradas</li>' : ''}
                                     </ul>
                                 </div>
                             </div>
