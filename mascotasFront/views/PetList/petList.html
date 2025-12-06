@@ -17,8 +17,9 @@
             crossorigin="anonymous"
         />
 
-        <link rel="stylesheet" href="../../styles/stylesheet.general.css">
-        <link rel="stylesheet" href="../../styles/animacion.cardMascotas.css">
+        <link rel="stylesheet" href="/styles/stylesheet.general.css">
+        <link rel="stylesheet" href="/styles/animacion.cardMascotas.css">
+        <link rel="stylesheet" href="/styles/sidebar.css">
     </head>
 
     <body>
@@ -26,14 +27,18 @@
             <!-- place navbar here -->
         </header>
         <main>
-            <div id="container mt-4">
-                <div id class="row">
-                    <div id="filter-sidebar-container" class="col-md-3">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="filter-sidebar-container" class="col-md-2 p-0">
                     
                     </div>
-                    <div id="pets-list-container " class="col-md-9">
+                    <div id="pets-list-container" class="col-md-10">
                         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4" id="pets-grid">
                             <!-- Aquí van las tarjetas de las mascotas-->
+                        </div>
+                        
+                        <div id="pagination-container" class="text-center mt-4">
+                            <!-- Aqui va la paginación-->
                         </div>
                     </div>
                 </div>
@@ -56,6 +61,6 @@
             crossorigin="anonymous"
         ></script>
 
-       <script type="module" src="./petList.js"></script>
+       <script type="module" src="/views/PetList/petList.js"></script>
     </body>
 </html>

@@ -34,6 +34,11 @@ const PetSchema = new Schema({
     required: true,
     enum: ["pequeño", "mediano", "grande"]
   },
+  caracter: {
+    type: String,
+    required: true,
+    enum: ["agresivo", "amigable", "social", "independiente"]
+  },
   estadoSalud: {
     type: String,
     required: true,

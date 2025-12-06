@@ -1,12 +1,15 @@
+import { createButton } from './button.js';
+
 export function createPetCard({
     nombre,
     caracter,
     especie, 
     raza, 
-    ubicacion, 
+    ciudad,
+    estado, 
     edad, 
     sexo,
-    imagen = "https://placehold.co/50x50"
+    imagen = "https://placehold.co/25x25"
     } = {} ){
 
     const links = ["Sobre mi", "Mandar Solicitud"];
@@ -35,11 +38,11 @@ export function createPetCard({
                         </li>
                         <li class="list-group-item text-center ">
                             <p class:"mb-1"><b>Caracter:</b> ${caracter} </p>
-                            <p class:"mb-0">${ubicacion}</p>
+                            <p class:"mb-0">${ciudad}, ${estado}</p>
                         </li>
                         <li class="list-group-item d-flex justify-content-center gap-2">
-                            <button>Mas Sobre mi</button>
-                            <button>Adóptame</button>
+                            ${createButton({ text: "Mas Sobre mi", color: "primary", size: "sm" })}
+                            ${createButton({ text: "Adóptame", color: "success", size: "sm" })}
                         </li>
                     </ul>                                  
             </div>

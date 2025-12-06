@@ -5,7 +5,8 @@
     border-radius: .5rem;
     cursor: pointer;
     transition: box-shadow 0.3s ease-in-out;
-
+    height: 650px;
+    width: 30%;
 }
 
 .card-img-backgroud{
