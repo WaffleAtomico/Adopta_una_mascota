@@ -61,8 +61,8 @@ route.get("/estado", (req = request, res = response) => {
   res.sendFile(path);
 });
 
-route.get("/contacto-dueno", (req = request, res = response) => {
-  const path = Rutas.Main['/contacto-dueno'];
+route.get("/contacto-dueno/:id", (req = request, res = response) => {
+  const path = Rutas.Main['/contacto-dueno/:id'];
   res.sendFile(path);
 });
 

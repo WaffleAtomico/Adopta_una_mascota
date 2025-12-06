@@ -1,15 +1,22 @@
+
 export function createPetProfile(data = {}){
     
     const petData = {
         nombre: data.nombre || "Nombre",
         sexo: data.sexo || "Hembra",
         tamaño: data.tamaño || "Mediano",
-        edad: data.edad || "5 años",
-        ubicacion: data.ubicacion || "Guadalajara, Jalisco",
+        edad: data.edad ? `${data.edad} años` : "5 años",
+        ciudad: data.ciudad || "Guadalajara",
+        estado: data.estado || "Jalisco",
         descripcion: data.descripcion || "Lorem ipsum dolor sit amet...",
         historialSalud: data.historialSalud || "Lorem ipsum dolor...",
         historiaPrevia: data.historiaPrevia || "Lorem ipsum, dolor sit amet...",
-        imagenes: data.imagenes || [
+        esterilizado: data.esterilizado || false,
+        vacunado: data.vacunado || false,
+        desparacitado: data.desparacitado || false,
+        microchip: data.microchip || false,
+        nivelActividad: data.nivelActividad || "medio",
+        imagenes: data.fotos || data.imagenes || [
             "https://placehold.co/250x100",
             "https://placehold.co/250x100",
             "https://placehold.co/250x100"
@@ -17,8 +24,7 @@ export function createPetProfile(data = {}){
     }
 
     const mainRow = `
-        <div class="row
- g-0 overflow-hidden">            <div class="col-lg-6">
+        <div class="row g-0 overflow-hidden bg-light p-3">            <div class="col-lg-6">
                 <div class="lc-block">
                     <div class="carousel slide">
                         <div id="carouselExampleIndicators" class="carousel slide">
@@ -54,8 +60,8 @@ export function createPetProfile(data = {}){
             </div>
 
             <div class="col-lg-6">
-                <div class="card pet-Presentation">
-                    <div class="card-header">
+                <div class="card pet-Presentation border">
+                    <div class="card-header border-bottom">
                         <h4>Hola, soy ${petData.nombre}</h4>
                     </div>
                     <div class="card-body border-top">
@@ -77,27 +83,56 @@ export function createPetProfile(data = {}){
                             </div>
                             
                             <div class="col profileinformation">
-                                <span class="petdata">${petData.ubicacion}</span><br>
+                                <span class="petdata">${petData.ciudad}, ${petData.estado}</span><br>
                                 <p class="petdataclass">Ubicación</p>
                             </div>
                         </div>
+                        
+                        <hr class="my-3">
                         
                         <div>
                             <h6>Descripción: </h6>
                             <p>${petData.descripcion}</p>
                         </div>
-                        
-                        <div>
-                            <button class="button ">Adóptame</button>
-                        </div>
+                    </div>
+                    <div class="card-footer d-flex justify-content-center align-items-center bg-white">
+                        ${createButton({ text: "Adóptame", color: "success", size: "lg", id: "adoptame-profile-btn" })}
                     </div>
                 </div>
             </div>
 
-            <div class="col-12">
+            <div class="col-12 mt-4">
                 <div class="card medical-record">
                     <h5>Salud y Antecedentes</h5>
                     <div class="card-body border-top">
+                        <div class="row profileinformation mb-3">
+                            
+                            <div class="col profileinformation">
+                                <span class="petdata">${petData.esterilizado ? 'Sí' : 'No'}</span><br>
+                                <p class="petdataclass">Esterilizado</p>
+                            </div>
+                            
+                            <div class="col profileinformation">
+                                <span class="petdata">${petData.vacunado ? 'Sí' : 'No'}</span><br>
+                                <p class="petdataclass">Vacunado</p>
+                            </div>
+                            
+                            <div class="col profileinformation">
+                                <span class="petdata">${petData.desparacitado ? 'Sí' : 'No'}</span><br>
+                                <p class="petdataclass">Desparacitado</p>
+                            </div>
+                            
+                            <div class="col profileinformation">
+                                <span class="petdata">${petData.microchip ? 'Sí' : 'No'}</span><br>
+                                <p class="petdataclass">Microchip</p>
+                            </div>
+                            
+                            <div class="col profileinformation">
+                                <span class="petdata">${petData.nivelActividad}</span><br>
+                                <p class="petdataclass">Nivel Actividad</p>
+                            </div>
+                        </div>
+                        
                         <ul class="list-group list-group-flush">
                             
                             <li class="list-group-item px-2 justify-content-between">

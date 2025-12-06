@@ -9,7 +9,8 @@ export function createPetCard({
     estado, 
     edad, 
     sexo,
-    imagen = "https://placehold.co/25x25"
+    imagen = "https://placehold.co/25x25",
+    _id
     } = {} ){
 
     const links = ["Sobre mi", "Mandar Solicitud"];
@@ -41,7 +42,7 @@ export function createPetCard({
                             <p class:"mb-0">${ciudad}, ${estado}</p>
                         </li>
                         <li class="list-group-item d-flex justify-content-center gap-2">
-                            ${createButton({ text: "Mas Sobre mi", color: "primary", size: "sm" })}
+                            ${createButton({ text: "Mas Sobre mi", color: "primary", size: "sm", id: `btn-sobre-mi-${_id}` })}
                             ${createButton({ text: "Adóptame", color: "success", size: "sm" })}
                         </li>
                     </ul>                                  
@@ -51,4 +52,13 @@ export function createPetCard({
     `
 
     return petCard;
+}
+
+export function setupPetCardEventListeners() {
+    document.addEventListener('click', function(e) {
+        if (e.target && e.target.id && e.target.id.startsWith('btn-sobre-mi-')) {
+            const petId = e.target.id.replace('btn-sobre-mi-', '');
+            window.location.href = `/mascotas/${petId}`;
+        }
+    });
 }

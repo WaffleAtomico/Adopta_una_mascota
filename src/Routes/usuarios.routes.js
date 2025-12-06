@@ -13,6 +13,7 @@ import { Roles } from "../Types/roles.types.js";
 const router = Router();
 
 // Aplicar validación de token a todas las rutas de usuarios excepto la de registro
+
 router.use((req, res, next) => {
     if (req.path === '/' && req.method === 'POST') {
         return next(); // Ruta de registro, no requiere token
@@ -34,3 +35,5 @@ router.put("/:id", validarRol([Roles.ADMIN, Roles.OWNER]), updateUser);
 router.delete("/:id", validarRol([Roles.ADMIN]), deleteUser);
 
 export default router;
+
+//

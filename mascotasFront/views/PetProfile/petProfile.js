@@ -1,56 +1,71 @@
 import { initNavbar } from "../../components/navbar.js";
 import { createPetProfile } from "../../components/pet.profile.js";
 
-function crearMascota(nombre, tamaño, ubicacion, edad, sexo, descripcion, historialSalud, historiaPrevia, imagenes) {
-    return {
-        nombre,
-        tamaño,
-        ubicacion,
-        edad,
-        sexo,
-        descripcion,
-        historialSalud,
-        historiaPrevia,
-        imagenes
-    }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-   
     initNavbar();
-   
-    const mascota = crearMascota(
-        "Firulais", 
-        "mediano",
-        "Guadalajara, Jalisco", 
-        "3 años", 
-        "Macho", 
-        "Firulais es un perro muy activo que ama correr en el parque y jugar a buscar la pelota.",
-        "Vacunado y desparasitado. Historial médico limpio.",
-        "Fue rescatado de una casa donde no recibía suficiente atención.",
-        [
-            "https://placehold.co/600x400",
-            "https://placehold.co/600x400",
-            "https://placehold.co/600x400"
-        ]
-    );
+    
+    const pathParts = window.location.pathname.split('/');
+    const petId = pathParts[pathParts.length - 1];
+    
+    const PetsProfileContainer = document.getElementById("perfilMascota");
+    
+    if (PetsProfileContainer) {
+        if (petId) {
+            fetch(`http://localhost:3000/api/mascotas/${petId}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type' : "aplication/json"
+                }
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Error al obtener los datos de la mascota');
+                    }
+                    return response.json();
+                })
+                .then(petData => {
 
-    const testPetsProfileContainer = document.getElementById("perfilMascota")
-    if (testPetsProfileContainer) {
-        const testPetsProfile = createPetProfile(mascota);
-       
-        testPetsProfileContainer.innerHTML = testPetsProfile;
+                    const actualPetData = petData.mascota || petData;
 
-        const carouselElement = document.getElementById('carouselExampleIndicators');
-        if (carouselElement && typeof bootstrap !== 'undefined' && bootstrap.Carousel) {
-            new bootstrap.Carousel(carouselElement, {
-                interval: 5000,
-                wrap: true
-            });
-            console.log("Carrusel de perfil inicializado.");
+                    const PetsProfile = createPetProfile(actualPetData);
+
+                    PetsProfileContainer.innerHTML = PetsProfile;
+                    
+                    initializeCarousel();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                    PetsProfileContainer.innerHTML = `
+                        <div class="alert alert-danger">
+                            <h4>Error al cargar el perfil de la mascota</h4>
+                            <p>No se pudieron obtener los datos de la mascota. Por favor, intenta nuevamente más tarde.</p>
+                        </div>
+                    `;
+
+                });
         } else {
-             // Si esto se muestra en la consola, Bootstrap no está disponible globalmente.
-             console.warn("Bootstrap Carousel no disponible o elemento no encontrado.");
+            PetsProfileContainer.innerHTML = `
+                <div class="alert alert-warning">
+                    <h4>ID de mascota no especificado</h4>
+                    <p>Por favor, proporciona un ID de mascota en la URL (ej: /mascota/123).</p>
+                </div>
+            `;
         }
     }
 });
+
+function initializeCarousel() {
+    const carouselElement = document.getElementById('carouselExampleIndicators');
+    
+    if (carouselElement && typeof bootstrap !== 'undefined' && bootstrap.Carousel) {
+        new bootstrap.Carousel(carouselElement, {
+            interval: 5000,
+            wrap: true
+        });
+    } else {
+        console.warn("Bootstrap Carousel no disponible o elemento no encontrado.");
+    }
+}
+
+

@@ -83,6 +83,12 @@ const PetSchema = new Schema({
     type: String,
     trim: true
   },
+  historialSalud: {
+    type: String,
+  },
+  historialPrevia: {
+    type: String,
+  },
   fotos: {
     type: [String],
     default: []

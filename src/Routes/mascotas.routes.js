@@ -28,3 +28,4 @@ router.put("/:id", validarRol([Roles.ADMIN, Roles.OWNER]), actualizarMascota);
 router.delete("/:id", validarRol([Roles.ADMIN]), borrarMascota);
 
 export default router;
+
