@@ -12,8 +12,6 @@ const __dirname = path.dirname(__filename);
 const rutaRaizProyecto = path.resolve(__dirname, '../../..');
 console.log("Ruta raiz",rutaRaizProyecto)
 
-const rutaRaizProyecto = path.resolve(__dirname, '../../..');
-console.log("Ruta raiz",rutaRaizProyecto)
 
 fs.readdir(rutaRaizProyecto, { withFileTypes: true }, (err, elementos) => {
   if (err) {
