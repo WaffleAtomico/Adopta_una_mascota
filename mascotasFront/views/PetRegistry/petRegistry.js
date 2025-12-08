@@ -120,6 +120,7 @@ function setupPetForm() {
                 tamaño: formData.get('tamaño'),
                 ciudad: formData.get('ciudad'),
                 estado: formData.get('estado'),
+                caracter: formData.get('caracter'),
                 estadoSalud: formData.get('estadoSalud'),
                 descripcion: formData.get('descripcion') || '',
                 peso: formData.get('peso') ? parseFloat(formData.get('peso')) : null,

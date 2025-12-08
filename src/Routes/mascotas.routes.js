@@ -3,6 +3,8 @@ import { crearMascotas, conseguirMascotas, buscarMascota, actualizarMascota, bor
 import { validarToken } from "../Middlewares/validar.token.js";
 import { validarRol } from '../Middlewares/validar.rol.js';
 import { Roles } from '../Types/roles.types.js';
+import { crearMascotaDTO } from '../DTOs/crear.mascotas.DTO.js';
+import { handleSchemaErrors } from '../Middlewares/handle.schema.errors.js';
 
 const router = Router();
 
@@ -17,7 +19,7 @@ router.use((req, res, next) => {
 // Ruta pública para obtener todas las mascotas
 router.get('/', conseguirMascotas);
 
-router.post("/", validarRol([Roles.ADMIN, Roles.OWNER]), crearMascotas);
+router.post("/", crearMascotaDTO, validarRol([Roles.ADMIN, Roles.OWNER]), crearMascotas);
 
 router.post("/multiple", validarRol([Roles.ADMIN]), crearMultiplesMascotas);
 
