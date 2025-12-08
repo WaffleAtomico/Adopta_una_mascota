@@ -19,7 +19,7 @@ router.use((req, res, next) => {
 // Ruta pública para obtener todas las mascotas
 router.get('/', conseguirMascotas);
 
-router.post("/", crearMascotaDTO, handleSchemaErrors, validarRol([Roles.ADMIN, Roles.OWNER]), crearMascotas);
+router.post("/", crearMascotaDTO, validarRol([Roles.ADMIN, Roles.OWNER]), crearMascotas);
 
 router.post("/multiple", validarRol([Roles.ADMIN]), crearMultiplesMascotas);
 
