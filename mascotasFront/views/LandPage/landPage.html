@@ -1,50 +1,174 @@
-<!-- Pagina de inicio -->
 <!doctype html>
 <html lang="en">
 
 <head>
     <title>Adopta tu mascota</title>
-    <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
-    <link rel="stylesheet" href="../../styles/stylesheet.general.css">
+    <style>
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../../imgs/MascotasLand1.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            margin-bottom: 50px;
+        }
 
+        .feature-section {
+            padding: 60px 0;
+        }
+
+        .img-feature {
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .img-feature:hover {
+            transform: scale(1.03);
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #0d6efd !important;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            margin: 0 10px;
+        }
+
+        .btn-nav {
+            margin-left: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <!-- place navbar here -->
-    </header>
-    <main>
-        <h1>PENDIENTE DE DISEÑO</h1>
-        <div>
-            <a id="login-button" class="p-2" href="../LoginPage/loginPage.html"></a>
-            <a id="createAcc-button" class="p-2" href="../CreateAccount/createAcc.html"></a>
-            <a id="back-button" class="p-2" href="../../pruebas.html"></a>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <div class="navbar-brand">
+                <i class="bi bi-heart-fill me-2"></i>Adopta Una Mascota
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div class="d-flex">
+                    <a id="login-button" class="btn-nav me-2"></a>
+                    <a id="createAcc-button" class="btn-nav"></a>
+                </div>
+            </div>
         </div>
+    </nav>
 
-        
-    </main>
-    <footer>
-        <!-- place footer here -->
+
+    <section id="inicio" class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-4 fw-bold mb-4">Encuentra a tu compañero perfecto</h1>
+            <p class="lead mb-4">Miles de mascotas están esperando un hogar lleno de amor</p>
+            <a href="#adopta" class="btn btn-primary btn-lg px-4 me-2">Ver mascotas</a>
+            <a href="#contacto" class="btn btn-outline-light btn-lg px-4">Cómo adoptar</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="adopta" class="feature-section">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Mascotas que buscan un hogar</h2>
+                    <p class="lead">Nuestros amigos peludos están esperando conocerte. Cada mascota tiene una historia
+                        única y está lista para llenar tu vida de alegría.</p>
+                    <p>Conoce a nuestros amigos que buscan un hogar amoroso donde ser parte de una familia.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="../../imgs/MascotasLand1.webp" alt="Mascota 1" class="img-fluid img-feature">
+                </div>
+            </div>
+
+            <div class="row align-items-center flex-lg-row-reverse mb-5">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">Proceso de adopción sencillo</h2>
+                    <p class="lead">Hacemos que el proceso de adopción sea lo más fácil y transparente posible.</p>
+                    <p>Nuestro equipo está para guiarte en cada paso del proceso de adopción, asegurando la mejor
+                        experiencia para ti y para la mascota.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="../../imgs/MascotasLand2.webp" alt="Mascota 2" class="img-fluid img-feature">
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <h2 class="fw-bold mb-4">¡Encuentra tu mascota ideal cerca de ti, totalmente gratis!</h2>
+                    <p class="lead">La compañía perfecta te espera sin que tengas que gastar un centavo.</p>
+                    <p>Descubre hoy mismo cómo conectar con mascotas listas para un hogar lleno de amor, con asesoría y
+                        apoyo continuo para que la adopción sea una experiencia feliz y sin complicaciones.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="../../imgs/MascotasLand3.webp" alt="Mascota 3" class="img-fluid img-feature">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bg-light py-5">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">¿Listo para cambiar una vida?</h2>
+            <p class="lead mb-4">Únete a nuestra comunidad y ayuda a darle un hogar a una mascota necesitada.</p>
+            <a href="#" class="btn btn-primary btn-lg me-3">Adopta ahora</a>
+            <a href="#" class="btn btn-outline-secondary btn-lg">Conoce más</a>
+        </div>
+    </section>
+
+    <footer id="contacto" class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">AdoptaMascota</h5>
+                    <p>Conectando corazones con patitas desde 2025. Nuestra misión es encontrar hogares amorosos para
+                        cada mascota necesitada.</p>
+                </div>
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h5 class="text-uppercase mb-4">Contáctanos</h5>
+                    <p><i class="bi bi-geo-alt-fill me-2"></i> Av. Patitas Felices 123, Tlajomulco</p>
+                    <p><i class="bi bi-telephone-fill me-2"></i>33 1234-5678</p>
+                    <p><i class="bi bi-envelope-fill me-2"></i> info@adoptamascota.com</p>
+                </div>
+                <div class="col-lg-4">
+                    <h5 class="text-uppercase mb-4">Síguenos</h5>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-4"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-4"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-4"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-tiktok fs-4"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2025 AdoptaMascota. Todos los derechos reservados.</p>
+            </div>
+        </div>
     </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
-
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script type="module" src="./landPage.js"></script>
+
+    <script type="module" src="./views/LandPage/landPage.js"></script>
 </body>
 
 </html>

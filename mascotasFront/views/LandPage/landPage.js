@@ -2,21 +2,29 @@ import { createButton } from "../../components/button.js"
 
 document.addEventListener("DOMContentLoaded", () => {
     const loginButtonContainer = document.getElementById("login-button");
-    const loginButton = createButton({text: "Acceder", 
-                                            iconright: "bi bi-box-arrow-in-right", 
-                                            color:"primary"})
-    loginButtonContainer.innerHTML = loginButton;
-    
+    const loginButton = createButton({
+        text: "Iniciar sesión", 
+        iconleft: "bi bi-box-arrow-in-right", 
+        color: "outline-primary",
+        size: "sm",
+        id: "btn-login-button",
+    });
+    loginButtonContainer.outerHTML = loginButton;
+   
     
     const createAccButtonContainer = document.getElementById("createAcc-button");
-    const createAccButton = createButton({text: "Crear cuenta", 
-                                            iconleft: "bi bi-person-fill-add", 
-                                            color:"success"})
-    createAccButtonContainer.innerHTML = createAccButton;
-
-    const backButtonContainer = document.getElementById("back-button");
-    const backButton = createButton({text: "Volver a componentes", 
-                                            iconleft: "bi bi-arrow-return-left", 
-                                            color:"secondary"})
-    backButtonContainer.innerHTML = backButton;
+    const createAccButton = createButton({
+        text: "Crear cuenta", 
+        color: "primary",
+        size: "sm",
+        id: "btn-createAcc-button"
+    });
+    createAccButtonContainer.outerHTML = createAccButton;
+    
+    document.getElementById("btn-login-button").addEventListener("click", () => {
+        window.location.href = "/login";
+    });
+    document.getElementById("btn-createAcc-button").addEventListener("click", () => {
+        window.location.href = "/registro";
+    });
 })

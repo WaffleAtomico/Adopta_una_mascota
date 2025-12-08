@@ -36,7 +36,7 @@ export const Rutas = Object.freeze({
         '/': `${rutaRaizProyecto}/mascotasFront/views/LandPage/LandPage.html`,
         '/dashboard': `${rutaRaizProyecto}/mascotasFront/views/Dashboard/Dashboard.html`,
         '/mascotas': `${rutaRaizProyecto}/mascotasFront/views/PetList/PetList.html`,
-        '/mascotas/nueva': `${rutaRaizProyecto}/mascotasFront/views/PetRegistry/PetRegistry.html`,
+        '/mascotas-registrar': `${rutaRaizProyecto}/mascotasFront/views/PetRegistry/PetRegistry.html`,
         '/mascotas/:id': `${rutaRaizProyecto}/mascotasFront/views/PetProfile/PetProfile.html`,
         '/perfil': `${rutaRaizProyecto}/mascotasFront/views/UserProfilePage/UserProfilePage.html`,
         '/contacto': `${rutaRaizProyecto}/mascotasFront/views/ContactPage/ContactPage.html`,
@@ -44,12 +44,4 @@ export const Rutas = Object.freeze({
         '/estado': `${rutaRaizProyecto}/mascotasFront/views/StatusPage/StatusPage.html`,
         '/contacto-dueno/:id': `${rutaRaizProyecto}/mascotasFront/views/PetOwnerContact/PetOwnerContact.html`
     },
-    /**
-     * @constant
-     * @type {Readonly<{[key: string]: string}>}
-     * @description Rutas adicionales de la aplicación
-     */
-    Products: {
-        '/home': `${rutaRaizProyecto}/mascotasFront/views/LandPage/LandPage.html`
-    }
 });

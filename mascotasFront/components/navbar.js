@@ -2,16 +2,16 @@ import { createButton } from "./button.js";
 
 function createNavbar(color = "#198754") {
 
-    const links = ["Inicio", "Mascotas", "Adoptar", "Contacto"];
+  const links = ["Inicio", "Mascotas", "Adoptar", "Contacto"];
 
-    const icons = [
-        "bi bi-house-door-fill",
-        "bi bi-heart-pulse-fill",
-        "fa-solid fa-paw",
-        "bi bi-envelope-fill"
-    ];
+  const icons = [
+    "bi bi-house-door-fill",
+    "bi bi-heart-pulse-fill",
+    "fa-solid fa-paw",
+    "bi bi-envelope-fill"
+  ];
 
-    const navbarHTML = `
+  const navbarHTML = `
     <div 
       class="navbar-container fixed-bottom w-100" 
       style="background-color: ${color}; box-shadow: 0 -2px 10px rgba(0,0,0,0.2);"
@@ -35,30 +35,34 @@ function createNavbar(color = "#198754") {
     </div>
   `;
 
-    return navbarHTML;
+  return navbarHTML;
 }
 
 
 function createNavbarNoPhone(elements = []) {
   const navbarHTML = `
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
-      <div class="container-fluid">
-        <div class="d-flex align-items-center">
-          <i class="bi bi-paw-fill text-warning fs-3 me-2"></i>
-          <span class="navbar-brand mb-0 h1">Adopta una mascota</span>
-        </div>
-
-        <div class="d-flex align-items-center ms-auto gap-2">
-          ${elements.map(el => `${el}`).join("")}
-        </div>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-3 py-2"
+   style="box-shadow: 0 2px 5px rgba(0,0,0,0.15);">
+    <div class="container-fluid">
+      <div class="d-flex align-items-center">
+        <i class="bi bi-heart-fill text-primary fs-4 me-2"></i>
+        <a href="/dashboard">
+          <span class="navbar-brand mb-0 h4 fw-bold text-primary">Adopta una mascota</span>
+        </a>
       </div>
-    </nav>
-  `;
+
+      <div class="d-flex align-items-center ms-auto gap-2">
+        ${elements.map(el => `${el}`).join("")}
+      </div>
+    </div>
+  </nav>
+`;
   return navbarHTML;
 }
 
 
-export function initNavbar(){
+export function initNavbar() {
   const header = document.querySelector("header");
   const footer = document.querySelector("footer");
 
@@ -78,9 +82,18 @@ export function initNavbar(){
     const logoutBtn = document.getElementById("logoutBtn");
 
     if (logoutBtn) {
-      logoutBtn.addEventListener("click", () => {
-        //Arreglar esto, necesitamos una ruta origen, esto depende de donde se encuentre va a fallar
-        window.location.href = "../LoginPage/loginPage.html"; 
+      logoutBtn.addEventListener("click", async () => {
+        try {
+          await fetch("/api/auth/logout", {
+            method: "POST",
+            credentials: "include"
+          });
+
+          window.location.href = "/";
+        } catch (err) {
+          console.error("Error en logout:", err);
+          window.location.href = "/";
+        }
       });
     }
   }

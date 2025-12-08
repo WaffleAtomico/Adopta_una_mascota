@@ -1,5 +1,6 @@
 import { request, response } from 'express';
 import authService from '../Services/auth.service.js';
+import configService from '../Utils/config.service.js';
 
 export const login = async (req = request, res = response) => {
   try {
@@ -11,6 +12,13 @@ export const login = async (req = request, res = response) => {
         msg: error
       });
     }
+
+    res.cookie('token', token, {
+      httpOnly: true,
+      secure: configService.PRODUCTIVO,
+      sameSite: 'lax',
+      maxAge: 60 * 60 * 1000 //1h
+    });
 
     res.status(200).json({
       success: true,
@@ -72,3 +80,12 @@ export const getMe = async (req = request, res = response) => {
     });
   }
 };
+
+export const logoutMe = async (req = request, res = response) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict"
+  });
+  return res.status(200).json({ success: true, msg: "Logout exitoso" });
+}
