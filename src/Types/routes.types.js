@@ -1,5 +1,6 @@
 import { fileURLToPath } from "node:url";
 import path from "node:path";
+import fs from "node:fs";
 
 //* Obtenemos la ruta del archivo actual
 const __filename = fileURLToPath(import.meta.url);
@@ -10,6 +11,21 @@ const __dirname = path.dirname(__filename);
 //* Subimos dos niveles para llegar a la raíz del proyecto
 const rutaRaizProyecto = path.resolve(__dirname, '../../..');
 console.log("Ruta raiz",rutaRaizProyecto)
+
+const rutaRaizProyecto = path.resolve(__dirname, '../../..');
+console.log("Ruta raiz",rutaRaizProyecto)
+
+fs.readdir(rutaRaizProyecto, { withFileTypes: true }, (err, elementos) => {
+  if (err) {
+    return console.error("Error al leer el directorio:", err);
+  }
+
+  console.log("\nContenido en ese nivel:");
+  elementos.forEach(item => {
+    console.log(item.isDirectory() ? `[DIR]  ${item.name}` : `[FILE] ${item.name}`);
+  });
+});
+
 
 /**
  * @constant
