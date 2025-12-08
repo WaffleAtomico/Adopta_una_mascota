@@ -18,10 +18,10 @@
     "src/**/*",
     "*.js",
     "*.ts"
-  ],
+, "mascotasFront"  ],
   "exclude": [
     "node_modules",
     "dist",
-    "src/mascotasFront"
+    "mascotasFront"
   ]
 }
