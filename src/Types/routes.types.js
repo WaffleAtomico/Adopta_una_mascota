@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 //* Subimos dos niveles para llegar a la raíz del proyecto
-const rutaRaizProyecto = path.resolve(__dirname, '../../..');
+const rutaRaizProyecto = path.resolve(__dirname, '../../');
 console.log("Ruta raiz",rutaRaizProyecto)
 
 
