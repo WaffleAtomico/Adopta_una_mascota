@@ -3,6 +3,7 @@ import express from "express";
 import cors from 'cors';
 import mascotasRouter from "./src/Routes/mascotas.routes.js";
 import userRouter from "./src/Routes/usuarios.routes.js";
+import adopcionRouter from "./src/Routes/adopcion.routes.js";
 import swaggerUi from 'swagger-ui-express';
 import YAML from 'yamljs';
 import path from 'path';
@@ -52,6 +53,7 @@ app.use(viewsRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/Mascotas", mascotasRouter);
 app.use("/api/User", userRouter);
+app.use("/api/adopcion", adopcionRouter);
 
 //Manejar los errores del server
 app.use(handleServerErrors);
