@@ -22,8 +22,7 @@ export const conseguirMascotas = async(req = request, res = response) => {
 
 export const crearMascotas = async(req = request, res = response) => {
     try {
-        const {pet} = req.body;
-        const mascota = await mascotasService.crearMascota(pet);
+        const mascota = await mascotasService.crearMascota(req.body);
         return res.status(201).json({
             success: true,
             mascota

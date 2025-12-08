@@ -52,6 +52,15 @@ export const crearMascotaDTO = checkSchema({
       errorMessage: "El tamaño debe ser 'pequeño', 'mediano' o 'grande'"
     }
   },
+  caracter: {
+    notEmpty: {
+      errorMessage: "El carácter es obligatorio"
+    },
+    isIn: {
+      options: [["agresivo", "amigable", "social", "independiente"]],
+      errorMessage: "El carácter debe ser 'agresivo', 'amigable', 'social' o 'independiente'"
+    }
+  },
   estadoSalud: {
     notEmpty: {
       errorMessage: "El estado de salud es obligatorio"
