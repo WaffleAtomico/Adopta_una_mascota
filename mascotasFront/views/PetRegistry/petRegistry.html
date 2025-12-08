@@ -80,7 +80,7 @@
                             <!-- Edad -->
                             <div class="col-md-6">
                                 <label for="edad" class="form-label">Edad (años) *</label>
-                                <input type="number" class="form-control" id="edad" name="edad" min="0" step="0.1" required>
+                                <input type="number" class="form-control" id="edad" name="edad" min="0" step="1" required>
                                 <div class="invalid-feedback">
                                     Por favor ingresa una edad válida.
                                 </div>
@@ -104,10 +104,10 @@
 
                             <!-- Tamaño -->
                             <div class="col-md-6">
-                                <label for="tamano" class="form-label">Tamaño *</label>
-                                <select class="form-select" id="tamano" name="tamano" required>
+                                <label for="tamaño" class="form-label">Tamaño *</label>
+                                <select class="form-select" id="tamaño" name="tamano" required>
                                     <option value="">Selecciona...</option>
-                                    <option value="pequeno">Pequeño</option>
+                                    <option value="pequeño">Pequeño</option>
                                     <option value="mediano">Mediano</option>
                                     <option value="grande">Grande</option>
                                 </select>
@@ -147,23 +147,14 @@
                                 <select class="form-select" id="estadoSalud" name="estadoSalud" required>
                                     <option value="">Selecciona...</option>
                                     <option value="sano">Sano</option>
-                                    <option value="en_tratamiento">En tratamiento</option>
-                                    <option value="enfermo">Enfermo</option>
+                                    <option value="requiere tratamiento">En tratamiento</option>
+                                    <option value="desconocido">Desconocido</option>
                                 </select>
                                 <div class="invalid-feedback">
                                     Por favor selecciona el estado de salud.
                                 </div>
                             </div>
-
-                            <!-- Carácter -->
-                            <div class="col-12">
-                                <label for="caracter" class="form-label">Carácter *</label>
-                                <input type="text" class="form-control" id="caracter" name="caracter" required>
-                                <div class="invalid-feedback">
-                                    Por favor describe el carácter de la mascota.
-                                </div>
-                            </div>
-
+                            
                             <!-- Descripción -->
                             <div class="col-12">
                                 <label for="descripcion" class="form-label">Descripción</label>
