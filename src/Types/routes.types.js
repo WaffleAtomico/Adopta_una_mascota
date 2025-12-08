@@ -34,7 +34,7 @@ export const Rutas = Object.freeze({
      * @description Rutas principales de la aplicación
      */
     Main: {
-        '/': `${rutaRaizProyecto}/mascotasFront/views/LandPage/LandPage.html`,
+        '/': `${rutaRaizProyecto}/mascotasFront/views/LandPage/landpage.html`,
         '/dashboard': `${rutaRaizProyecto}/mascotasFront/views/Dashboard/Dashboard.html`,
         '/mascotas': `${rutaRaizProyecto}/mascotasFront/views/PetList/PetList.html`,
         '/mascotas-registrar': `${rutaRaizProyecto}/mascotasFront/views/PetRegistry/PetRegistry.html`,
