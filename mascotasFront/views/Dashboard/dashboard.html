@@ -17,67 +17,90 @@
     <!-- Archivo de estilos personalizados -->
     <link rel="stylesheet" href="../../styles/stylesheet.general.css">
     <link rel="stylesheet" href="../../styles/animacion.cardMascotas.css">
+
+    <style>
+        .horizontal-carousel .carousel-item {
+            padding: 10px;
+        }
+
+        .horizontal-carousel .card {
+            width: 100%;
+        }
+
+        .horizontal-carousel {
+            max-height: 250px;
+            overflow: hidden;
+        }
+    </style>
+
 </head>
 
 <body>
     <header>
-        <!-- place navbar here -->
+
     </header>
     <main>
         <main class="container my-5">
             <div class="text-center mb-5">
-              <h1 class="fw-bold text-success">Adopta una mascota</h1>
+                <h1 id="userGreeting" class="fw-bold text-success">¡Bienvenido!</h1>
             </div>
 
-            <!-- Grid de tarjetas -->
-            <a href="..\PetList\petList.html">
-            <div class="row row-cols-1 row-cols-md-3 g-4" id="Lista-Mascota">
-                <div class="col">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-body text-center">
-                            <h5 class="card-title fw-bold">Lista de mascotas</h5>
-                            <div class="card-text text-muted">-</div>
+            <a href="/mascotas">
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="Lista-Mascota">
+                    <div class="col">
+                        <div class="card h-100 shadow-sm">
+                            <div class="card-body text-center">
+                                <h5 class="card-title fw-bold">Lista de mascotas</h5>
+                                <div class="horizontal-carousel">
+                                    <div id="petCarousel" class="carousel slide" data-bs-ride="carousel">
+                                        <div id="petCarouselInner" class="carousel-inner"></div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>                
+            </a>
 
+            <a href="/mascotas-registrar">
                 <div class="col">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold">Registrar mascota</h5>
-                            <div class="card-text text-muted">-</div>
+                            <div class="card-text text-muted">
+                                Ninguna mascota registrada aun.
+                            </div>
                         </div>
                     </div>
                 </div>
+            </a>
 
+            <a href="/postulacion">
                 <div class="col" id="status-mascota-container">
                     <div class="card h-100 shadow-sm">
                         <div class="card-body text-center">
                             <h5 class="card-title fw-bold">Status mascota</h5>
                             <div class="card-text text-muted" id="petStatusList">
-                                a
+                                Ninguna mascota solicitada para adoptar.
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
+            </a>
         </main>
-    </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
-        crossorigin="anonymous"></script>
+        <footer>
+            <!-- place footer here -->
+        </footer>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
-        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"></script>
 
-    <script type="module" src="./dashboard.js"></script>
-
+        <script type="module" src="./views/DashBoard/dashboard.js"></script>
 </body>
 
 </html>

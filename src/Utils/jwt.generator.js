@@ -41,6 +41,7 @@ export const verificarToken = (token) => {
         return {
             id: decoded.id,
             email: decoded.email,
+            nombre: decoded.nombre,
             rol: decoded.rol
         };
     } catch (error) {

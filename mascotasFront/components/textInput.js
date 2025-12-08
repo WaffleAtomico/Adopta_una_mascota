@@ -1,4 +1,5 @@
 export function createTextInput(
+  id = "",
   title = "Campo de texto",
   placeholder = "Escribe aquí...",
   validation = {}
@@ -16,6 +17,7 @@ export function createTextInput(
     <div class="mb-3 text-start">
       <label class="form-label fw-semibold">${title}</label>
       <input 
+        id="${id}"
         type="${type}"
         class="form-control"
         placeholder="${placeholder}"

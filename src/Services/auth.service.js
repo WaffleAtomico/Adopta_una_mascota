@@ -14,6 +14,7 @@ class AuthService {
 
       const user = await usuarioRepository.getUserByEmail(email.toLowerCase());
 
+      
       if (!user) {
         console.log(user)
         return {
@@ -32,6 +33,7 @@ class AuthService {
       const token = generarJWT({ 
         id: user._id, 
         email: user.email, 
+        nombre: user.nombre,
         rol: user.rol.nombre 
       });
 
@@ -52,13 +54,11 @@ class AuthService {
 
   async register(userData) {
     try {
-      // Verificar si el usuario ya existe
       const existingUser = await usuarioRepository.getUserByEmail(userData.email);
       if (existingUser) {
         return { error: "El correo ya está registrado" };
       }
 
-      console.log(userData)
 
       const defaultRole = await Rol.findOne({ nombre: userData.rol });
       if (!defaultRole) {
@@ -75,6 +75,7 @@ class AuthService {
       const token = generarJWT({ 
         id: newUser._id, 
         email: newUser.email, 
+        nombre: newUser.nombre,
         rol: userWithRole.rol.nombre // Use the role name for the JWT
       });
 

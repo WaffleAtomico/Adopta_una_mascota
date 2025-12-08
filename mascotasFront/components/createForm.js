@@ -1,6 +1,5 @@
 export function createForm(formId = "NewForm", elements = []) {
 
-    console.log(elements)
   const formHTML = `
     <form id="${formId}" class="was-validated p-3 border rounded d-flex flex-column gap-3">
       ${elements.map(element => {

@@ -8,12 +8,12 @@ export function createCheckBoxGroup(options = [], title = "") {
           <input 
             class="form-check-input custom-checkbox me-2" 
             type="checkbox" 
-            id="check-${index}" 
+            id="check-${title}-${index}" 
             value="${optionText}"
           >
           <label 
             class="form-check-label flex-grow-1" 
-            for="check-${index}"
+            for="check-${title}-${index}"
             style="text-align: left;"
           >
             ${optionText}
