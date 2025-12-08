@@ -17,155 +17,6 @@ servers:
     description: Servidor de producción
 
 components:
-  schemas:
-    Mascota:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: ID único de la mascota
-        nombre:
-          type: string
-          description: Nombre de la mascota
-        especie:
-          type: string
-          description: Especie de la mascota (perro, gato, etc.)
-        raza:
-          type: string
-          description: Raza de la mascota
-        edad:
-          type: number
-          description: Edad de la mascota en años
-        genero:
-          type: string
-          enum: [macho, hembra]
-          description: Género de la mascota
-        descripcion:
-          type: string
-          description: Descripción detallada de la mascota
-        imagen:
-          type: string
-          format: uri
-          description: URL de la imagen de la mascota
-        estado:
-          type: string
-          enum: [disponible, adoptado, en_proceso]
-          description: Estado actual de la mascota
-        publicadoPor:
-          type: string
-          description: ID del usuario que publicó la mascota
-        adoptadoPor:
-          type: string
-          description: ID del usuario que adoptó la mascota (si aplica)
-        isDeleted:
-          type: boolean
-          default: false
-        createdAt:
-          type: string
-          format: date-time
-          description: Fecha de creación del registro
-        updatedAt:
-          type: string
-          format: date-time
-          description: Fecha de última actualización
-
-    Usuario:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: ID único del usuario
-        nombre:
-          type: string
-          description: Nombre del usuario
-        apellidoPaterno:
-          type: string
-          description: Apellido paterno del usuario
-        apellidoMaterno:
-          type: string
-          description: Apellido materno del usuario
-        email:
-          type: string
-          format: email
-          description: Correo electrónico del usuario
-        telefono:
-          type: string
-          description: Número de teléfono del usuario
-        tipoTelefono:
-          type: string
-          enum: [celular, casa, trabajo, otro]
-          description: Tipo de número de teléfono
-        rol:
-          type: string
-          enum: [ADMIN, OWNER, USER]
-          description: Rol del usuario en el sistema
-        direccion:
-          type: object
-          properties:
-            calle:
-              type: string
-            numeroExterior:
-              type: string
-            numeroInterior:
-              type: string
-            colonia:
-              type: string
-            codigoPostal:
-              type: string
-            ciudad:
-              type: string
-            estado:
-              type: string
-        fechaNacimiento:
-          type: string
-          format: date
-          description: Fecha de nacimiento del usuario
-        genero:
-          type: string
-          enum: [masculino, femenino, otro, prefiero_no_decirlo]
-          description: Género del usuario
-        estado:
-          type: string
-          enum: [pendiente, activo, inactivo, suspendido]
-          default: pendiente
-          description: Estado de la cuenta del usuario
-        createdAt:
-          type: string
-          format: date-time
-          description: Fecha de creación de la cuenta
-        updatedAt:
-          type: string
-          format: date-time
-          description: Fecha de última actualización
-
-    SolicitudAdopcion:
-      type: object
-      properties:
-        _id:
-          type: string
-          description: ID único de la solicitud
-        mascota:
-          $ref: '#/components/schemas/Mascota'
-        solicitante:
-          $ref: '#/components/schemas/Usuario'
-        propietario:
-          $ref: '#/components/schemas/Usuario'
-        estado:
-          type: string
-          enum: [pendiente, aceptada, rechazada]
-          description: Estado actual de la solicitud
-        isDeleted:
-          type: boolean
-          default: false
-        createdAt:
-          type: string
-          format: date-time
-          description: Fecha de creación de la solicitud
-        updatedAt:
-          type: string
-          format: date-time
-          description: Fecha de última actualización
-
   securitySchemes:
     bearerAuth:
       type: http
@@ -317,6 +168,40 @@ components:
         message:
           type: string
 
+    SolicitudAdopcion:
+      type: object
+      properties:
+        _id:
+          type: string
+          description: ID único de la solicitud de adopción
+        mascota:
+          $ref: '#/components/schemas/Mascota'
+        solicitante:
+          $ref: '#/components/schemas/User'
+        propietario:
+          $ref: '#/components/schemas/User'
+        estado:
+          type: string
+          enum: [pendiente, aceptada, rechazada]
+          default: pendiente
+          description: Estado actual de la solicitud
+        isDeleted:
+          type: boolean
+          default: false
+        createdAt:
+          type: string
+          format: date-time
+          description: Fecha de creación de la solicitud
+        updatedAt:
+          type: string
+          format: date-time
+          description: Fecha de última actualización
+      required:
+        - mascota
+        - solicitante
+        - propietario
+        - estado
+
 security:
   - bearerAuth: []
 
@@ -412,260 +297,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
-
-  /adopcion:
-    post:
-      tags:
-        - Adopciones
-      summary: Crear una nueva solicitud de adopción
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - mascota
-                - solicitante
-                - propietario
-              properties:
-                mascota:
-                  type: string
-                  description: ID de la mascota a adoptar
-                solicitante:
-                  type: string
-                  description: ID del usuario que solicita la adopción
-                propietario:
-                  type: string
-                  description: ID del propietario actual de la mascota
-                estado:
-                  type: string
-                  enum: [pendiente, aceptada, rechazada]
-                  default: pendiente
-                  description: Estado de la solicitud
-      responses:
-        '201':
-          description: Solicitud de adopción creada exitosamente
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RespuestaExitosa'
-        '400':
-          description: Error en la solicitud
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: No autorizado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-  /adopcion/{id}:
-    get:
-      tags:
-        - Adopciones
-      summary: Obtener una solicitud de adopción por ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          description: ID de la solicitud de adopción
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Solicitud de adopción encontrada
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/SolicitudAdopcion'
-        '404':
-          description: Solicitud no encontrada
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: No autorizado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-    delete:
-      tags:
-        - Adopciones
-      summary: Eliminar una solicitud de adopción
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          description: ID de la solicitud de adopción a eliminar
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Solicitud eliminada exitosamente
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  ok:
-                    type: boolean
-                    example: true
-                  msg:
-                    type: string
-                    example: "Solicitud eliminada correctamente"
-        '400':
-          description: Error al eliminar la solicitud
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: No autorizado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-  /adopcion/user/{id}:
-    get:
-      tags:
-        - Adopciones
-      summary: Obtener todas las solicitudes de adopción de un usuario
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          description: ID del usuario
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Lista de solicitudes de adopción del usuario
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SolicitudAdopcion'
-        '400':
-          description: Error en la solicitud
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: No autorizado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-  /adopcion/mascota/{id}:
-    get:
-      tags:
-        - Adopciones
-      summary: Obtener todas las solicitudes de adopción de una mascota
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          description: ID de la mascota
-      security:
-        - bearerAuth: []
-      responses:
-        '200':
-          description: Lista de solicitudes de adopción de la mascota
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/SolicitudAdopcion'
-        '400':
-          description: Error en la solicitud
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: No autorizado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-
-  /adopcion/{id}/estado:
-    put:
-      tags:
-        - Adopciones
-      summary: Actualizar el estado de una solicitud de adopción
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-          description: ID de la solicitud de adopción
-      security:
-        - bearerAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              required:
-                - estado
-              properties:
-                estado:
-                  type: string
-                  enum: [pendiente, aceptada, rechazada]
-                  description: Nuevo estado de la solicitud
-      responses:
-        '200':
-          description: Estado de la solicitud actualizado correctamente
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  ok:
-                    type: boolean
-                    example: true
-                  msg:
-                    type: string
-                    example: "Estado actualizado correctamente"
-                  solicitud:
-                    $ref: '#/components/schemas/SolicitudAdopcion'
-        '400':
-          description: Error al actualizar el estado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-        '401':
-          description: No autorizado
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
 
   /Mascotas:
     get:
@@ -1078,12 +709,290 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /adopcion:
+    post:
+      tags:
+        - Adopciones
+      summary: Crear una nueva solicitud de adopción
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - mascota
+                - solicitante
+                - propietario
+              properties:
+                mascota:
+                  type: string
+                  description: ID de la mascota a adoptar
+                solicitante:
+                  type: string
+                  description: ID del usuario que solicita la adopción
+                propietario:
+                  type: string
+                  description: ID del propietario actual de la mascota
+      responses:
+        '201':
+          description: Solicitud de adopción creada exitosamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  msg:
+                    type: string
+                    example: "Solicitud de adopción creada correctamente"
+        '400':
+          description: Error en la solicitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /adopcion/{id}:
+    get:
+      tags:
+        - Adopciones
+      summary: Obtener una solicitud de adopción por ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la solicitud de adopción
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Solicitud de adopción encontrada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  data:
+                    $ref: '#/components/schemas/SolicitudAdopcion'
+        '404':
+          description: Solicitud no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Adopciones
+      summary: Eliminar una solicitud de adopción
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la solicitud de adopción
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Solicitud eliminada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  msg:
+                    type: string
+                    example: "Solicitud eliminada correctamente"
+        '404':
+          description: Solicitud no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /adopcion/user/{id}:
+    get:
+      tags:
+        - Adopciones
+      summary: Obtener todas las solicitudes de adopción de un usuario
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID del usuario
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de solicitudes de adopción
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SolicitudAdopcion'
+        '404':
+          description: Usuario no encontrado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /adopcion/mascota/{id}:
+    get:
+      tags:
+        - Adopciones
+      summary: Obtener todas las solicitudes de adopción de una mascota
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la mascota
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Lista de solicitudes de adopción
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SolicitudAdopcion'
+        '404':
+          description: Mascota no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /adopcion/{id}/estado:
+    put:
+      tags:
+        - Adopciones
+      summary: Actualizar el estado de una solicitud de adopción
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+          description: ID de la solicitud de adopción
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - estado
+              properties:
+                estado:
+                  type: string
+                  enum: [pendiente, aceptada, rechazada]
+                  description: Nuevo estado de la solicitud
+      responses:
+        '200':
+          description: Estado actualizado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    default: true
+                  msg:
+                    type: string
+                    example: "Estado actualizado correctamente"
+        '400':
+          description: Error en la solicitud
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Solicitud no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: No autorizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
 tags:
   - name: Autenticación
     description: Endpoints para autenticación y gestión de usuarios
   - name: Mascotas
     description: Operaciones relacionadas con la gestión de mascotas
-  - name: Usuarios
-    description: Operaciones relacionadas con la gestión de usuarios
   - name: Adopciones
     description: Operaciones relacionadas con las solicitudes de adopción
+  - name: Usuarios
+    description: Operaciones relacionadas con la gestión de usuarios
