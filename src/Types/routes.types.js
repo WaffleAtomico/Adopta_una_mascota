@@ -24,8 +24,8 @@ export const Rutas = Object.freeze({
      * @description Rutas de autenticación y registro
      */
     Auth: {
-        '/login': `${rutaRaizProyecto}/mascotasFront/views/LoginPage/LoginPage.html`,
-        '/registro': `${rutaRaizProyecto}/mascotasFront/views/CreateAccount/CreateAccount.html`
+        '/login': `${rutaRaizProyecto}/mascotasFront/views/LoginPage/loginPage.html`,
+        '/registro': `${rutaRaizProyecto}/mascotasFront/views/CreateAccount/createAccount.html`
     },
     
     /**
@@ -35,14 +35,14 @@ export const Rutas = Object.freeze({
      */
     Main: {
         '/': `${rutaRaizProyecto}/mascotasFront/views/LandPage/landPage.html`,
-        '/dashboard': `${rutaRaizProyecto}/mascotasFront/views/Dashboard/Dashboard.html`,
-        '/mascotas': `${rutaRaizProyecto}/mascotasFront/views/PetList/PetList.html`,
-        '/mascotas-registrar': `${rutaRaizProyecto}/mascotasFront/views/PetRegistry/PetRegistry.html`,
-        '/mascotas/:id': `${rutaRaizProyecto}/mascotasFront/views/PetProfile/PetProfile.html`,
-        '/perfil': `${rutaRaizProyecto}/mascotasFront/views/UserProfilePage/UserProfilePage.html`,
+        '/dashboard': `${rutaRaizProyecto}/mascotasFront/views/Dashboard/dashboard.html`,
+        '/mascotas': `${rutaRaizProyecto}/mascotasFront/views/PetList/petList.html`,
+        '/mascotas-registrar': `${rutaRaizProyecto}/mascotasFront/views/PetRegistry/petRegistry.html`,
+        '/mascotas/:id': `${rutaRaizProyecto}/mascotasFront/views/PetProfile/petProfile.html`,
+        '/perfil': `${rutaRaizProyecto}/mascotasFront/views/UserProfilePage/userProfilePage.html`,
         '/contacto': `${rutaRaizProyecto}/mascotasFront/views/ContactPage/ContactPage.html`,
-        '/postulacion': `${rutaRaizProyecto}/mascotasFront/views/PostulationPage/PostulationPage.html`,
-        '/estado': `${rutaRaizProyecto}/mascotasFront/views/StatusPage/StatusPage.html`,
-        '/contacto-dueno/:id': `${rutaRaizProyecto}/mascotasFront/views/PetOwnerContact/PetOwnerContact.html`
+        '/postulacion': `${rutaRaizProyecto}/mascotasFront/views/PostulationPage/postulationPage.html`,
+        '/estado': `${rutaRaizProyecto}/mascotasFront/views/StatusPage/statusPage.html`,
+        '/contacto-dueno/:id': `${rutaRaizProyecto}/mascotasFront/views/PetOwnerContact/petOwnerContact.html`
     },
 });
