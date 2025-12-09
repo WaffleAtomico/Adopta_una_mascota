@@ -38,8 +38,8 @@ export function createPetCard({
                             </div>
                         </li>
                         <li class="list-group-item text-center ">
-                            <p class:"mb-1"><b>Caracter:</b> ${caracter} </p>
-                            <p class:"mb-0">${ciudad}, ${estado}</p>
+                            <p class="mb-1"><b>Caracter:</b> ${caracter || 'No especificado'} </p>
+                            <p class="mb-0">${ciudad}, ${estado}</p>
                         </li>
                         <li class="list-group-item d-flex justify-content-center gap-2">
                             ${createButton({ text: "Mas Sobre mi", color: "primary", size: "sm", id: `btn-sobre-mi-${_id}` })}
@@ -56,9 +56,15 @@ export function createPetCard({
 
 export function setupPetCardEventListeners() {
     document.addEventListener('click', function(e) {
-        if (e.target && e.target.id && e.target.id.startsWith('btn-sobre-mi-')) {
-            const petId = e.target.id.replace('btn-sobre-mi-', '');
-            window.location.href = `/mascotas/${petId}`;
+        // Buscar el botón más cercano si se hizo clic en un elemento interno
+        const button = e.target.closest('button[id^="btn-sobre-mi-"]');
+        
+        if (button && button.id) {
+            const petId = button.id.replace('btn-sobre-mi-', '');
+            
+            if (petId) {
+                window.location.href = `/mascotas/${petId}`;
+            }
         }
     });
 }

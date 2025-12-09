@@ -68,18 +68,40 @@ export function initNavbar() {
 
   const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-  console.log(header, footer)
-
   if (isMobile) {
     footer.innerHTML = createNavbar({ color: "bg-dark" });
   } else {
     const navbarElements = [
-      createButton({ text: "Perfil", color: "success", outlined: true }),
+      createButton({ text: "Perfil", color: "success", outlined: true, id: "profileBtn" }),
       createButton({ text: "Cerrar sesión", color: "warning", id: "logoutBtn" })
     ];
 
     header.innerHTML = createNavbarNoPhone(navbarElements);
     const logoutBtn = document.getElementById("logoutBtn");
+    const profileBtn = document.getElementById("profileBtn");
+
+    if (profileBtn) {
+      profileBtn.addEventListener("click", async () => {
+        try {
+          // Obtener los datos del usuario actual
+          const response = await fetch("/api/auth/me", {
+            credentials: "include"
+          });
+          
+          if (response.ok) {
+            const userData = await response.json();
+            const userId = userData.user.id;
+            window.location.href = `/contacto-dueno/${userId}`;
+          } else {
+            console.error("Error al obtener datos del usuario");
+            window.location.href = "/login";
+          }
+        } catch (err) {
+          console.error("Error al cargar perfil:", err);
+          window.location.href = "/login";
+        }
+      });
+    }
 
     if (logoutBtn) {
       logoutBtn.addEventListener("click", async () => {

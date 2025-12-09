@@ -3,11 +3,6 @@ import { createPetCard, setupPetCardEventListeners } from "../../components/Pets
 import { createPagination } from "../../components/pagination.js";
 import { generarSidebarFiltros } from "../../components/sidebar.js";
 
-
-document.addEventListener("DOMContentLoaded", () => {
-    initNavbar();
-});
-
 export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, edad, sexo, imagen) {
     return {
         nombre,
@@ -21,9 +16,6 @@ export function crearMascota(nombre, caracter, especie, raza, ciudad, estado, ed
         imagen
     }
 }
-
-
-
 
 document.addEventListener("DOMContentLoaded", () => {
     initNavbar();
@@ -40,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const filtrosActivos = {
         especie: [],
         sexo: [],
-        tamano: [],
+        tamaño: [],
         orden_edad: ''
     };
     
@@ -59,8 +51,8 @@ document.addEventListener("DOMContentLoaded", () => {
             if (filtrosActivos.sexo.length > 0) {
                 filtrosActivos.sexo.forEach(sexo => params.append('sexo', sexo.toLowerCase()));
             }
-            if (filtrosActivos.tamano.length > 0) {
-                filtrosActivos.tamano.forEach(tamano => params.append('tamaño', tamano.toLowerCase()));
+            if (filtrosActivos.tamaño.length > 0) {
+                filtrosActivos.tamaño.forEach(tamano => params.append('tamaño', tamano.toLowerCase()));
             }
             if (filtrosActivos.orden_edad) {
                 params.append('sortBy', 'edad');
@@ -71,7 +63,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
-                }
+                },
+                credentials: 'include'
             });
             
             const data = await response.json();
@@ -193,7 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
         
         if (titleText.includes('especie')) return 'especie';
         if (titleText.includes('sexo')) return 'sexo';
-        if (titleText.includes('tamaño')) return 'tamano';
+        if (titleText.includes('tamaño')) return 'tamaño';
         if (titleText.includes('edad')) return 'orden_edad';
         
         return '';

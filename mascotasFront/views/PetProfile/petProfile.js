@@ -11,11 +11,12 @@ document.addEventListener("DOMContentLoaded", () => {
     
     if (PetsProfileContainer) {
         if (petId) {
-            fetch(`http://localhost:3000/api/mascotas/${petId}`, {
+            fetch(`/api/mascotas/${petId}`, {
                 method: 'GET',
                 headers: {
-                    'Content-Type' : "aplication/json"
-                }
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include'
             })
                 .then(response => {
                     if (!response.ok) {
