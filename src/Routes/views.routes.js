@@ -64,6 +64,11 @@ route.get("/estado",validarToken(['ADMIN','USER','OWNER']), (req = request, res 
   res.sendFile(path);
 });
 
+route.get("/adopcion",validarToken(['ADMIN','USER','OWNER']), (req = request, res = response) => {
+  const path = Rutas.Main['/adopcion'];
+  res.sendFile(path);
+});
+
 route.get("/contacto-dueno/:id",validarToken(['ADMIN','USER','OWNER']), (req = request, res = response) => {
   const path = Rutas.Main['/contacto-dueno/:id'];
   res.sendFile(path);

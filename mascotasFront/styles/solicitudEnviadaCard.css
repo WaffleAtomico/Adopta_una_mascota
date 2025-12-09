@@ -1,0 +1,107 @@
+.solicitud-enviada-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+}
+
+.solicitud-enviada-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+.solicitud-enviada-card .rounded-circle {
+    transition: border-color 0.2s ease-in-out;
+}
+
+.solicitud-enviada-card:hover .rounded-circle {
+    border-color: #007bff !important;
+}
+
+.solicitud-enviada-card .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+.solicitud-enviada-card h6 {
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.solicitud-enviada-card .text-muted {
+    font-size: 0.8rem;
+}
+
+/* Estilos para solicitudes recibidas */
+.solicitud-recibida-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: none;
+    background: linear-gradient(135deg, #e3f2fd 0%, #ffffff 100%);
+}
+
+.solicitud-recibida-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(33, 150, 243, 0.15) !important;
+}
+
+.solicitud-recibida-card .rounded-circle {
+    transition: border-color 0.2s ease-in-out;
+}
+
+.solicitud-recibida-card:hover .rounded-circle {
+    border-color: #2196f3 !important;
+}
+
+.solicitud-recibida-card .badge {
+    font-size: 0.75rem;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-weight: 500;
+}
+
+.solicitud-recibida-card h6 {
+    color: #2c3e50;
+    font-size: 1rem;
+}
+
+.solicitud-recibida-card .text-muted {
+    font-size: 0.8rem;
+}
+
+/* Animación de entrada */
+.solicitud-enviada-card,
+.solicitud-recibida-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .solicitud-enviada-card .rounded-circle,
+    .solicitud-recibida-card .rounded-circle {
+        width: 60px !important;
+        height: 60px !important;
+    }
+    
+    .solicitud-enviada-card h6,
+    .solicitud-recibida-card h6 {
+        font-size: 0.9rem;
+    }
+    
+    .solicitud-enviada-card .badge,
+    .solicitud-recibida-card .badge {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+}

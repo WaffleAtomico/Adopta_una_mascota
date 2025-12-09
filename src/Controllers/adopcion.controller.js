@@ -1,4 +1,6 @@
 import AdopcionService from "../Services/adopcion.service.js";
+import mongoose from "mongoose";
+const { ObjectId } = mongoose.Types;
 
 export const crearSolicitud = async (req, res) => {
   try {
@@ -34,6 +36,22 @@ export const obtenerSolicitudPorId = async (req, res) => {
 export const obtenerSolicitudesUsuario = async (req, res) => {
   try {
     const solicitudes = await AdopcionService.obtenerSolicitudesUsuario(req.params.id);
+    return res.json({
+      ok: true,
+      solicitudes
+    });
+  } catch (error) {
+    return res.status(400).json({
+      ok: false,
+      msg: error.message
+    });
+  }
+};
+
+export const obtenerSolicitudesComoSolicitante = async (req, res) => {
+  try {
+    const solicitudes = await AdopcionService.obtenerSolicitudesComoSolicitante(req.params.id);
+    
     return res.json({
       ok: true,
       solicitudes

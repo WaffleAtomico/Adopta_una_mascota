@@ -16,7 +16,7 @@ const solicitudAdopcionSchema = new Schema(
       required: true
     },
 
-    propietario: {
+    dueno: {
       type: Schema.Types.ObjectId,
       ref: 'Usuario',
       required: true
@@ -27,6 +27,15 @@ const solicitudAdopcionSchema = new Schema(
       enum: ["pendiente", "aceptada", "rechazada"],
       default: "pendiente",
       required: true
+    },
+
+    isDeleted: {
+      type: Boolean,
+      default: false
+    },
+
+    deletedAt: {
+      type: Date
     }
   },
   { timestamps: true }

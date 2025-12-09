@@ -3,6 +3,7 @@ import {
   crearSolicitud,
   obtenerSolicitudPorId,
   obtenerSolicitudesUsuario,
+  obtenerSolicitudesComoSolicitante,
   obtenerSolicitudesMascota,
   actualizarEstadoSolicitud,
   eliminarSolicitud
@@ -20,6 +21,8 @@ const router = Router();
 router.get("/:id", validarToken(), validarRol([Roles.ADMIN, Roles.OWNER]), obtenerSolicitudPorId);
 
 router.get("/user/:id", validarToken(), validarRol([Roles.ADMIN, Roles.OWNER]), obtenerSolicitudesUsuario);
+
+router.get("/solicitante/:id", validarToken(), validarRol([Roles.ADMIN, Roles.OWNER, Roles.USER]), obtenerSolicitudesComoSolicitante);
 
 router.get("/mascota/:id", validarToken(), validarRol([Roles.ADMIN, Roles.OWNER]), obtenerSolicitudesMascota);
 

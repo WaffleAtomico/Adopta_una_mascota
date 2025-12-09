@@ -19,12 +19,12 @@ export const crearSolicitudAdopcionDTO = checkSchema({
     }
   },
 
-  propietario: {
+  dueno: {
     notEmpty: {
-      errorMessage: "El ID del propietario es obligatorio"
+      errorMessage: "El ID del dueño es obligatorio"
     },
     isMongoId: {
-      errorMessage: "El ID del propietario debe ser un MongoID válido"
+      errorMessage: "El ID del dueño debe ser un MongoID válido"
     }
   },
 

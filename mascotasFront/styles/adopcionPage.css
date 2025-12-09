@@ -1,0 +1,111 @@
+/* Estilos para la página de gestión de adopciones */
+
+.adopcion-card {
+    transition: transform 0.2s ease-in-out;
+}
+
+.adopcion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.badge {
+    font-size: 0.75rem;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+
+.loading-spinner {
+    display: none;
+}
+
+.loading .loading-spinner {
+    display: inline-block;
+}
+
+.loading .btn-text {
+    display: none;
+}
+
+/* Estilos adicionales para el contenedor principal */
+#adopcionContainer .card {
+    margin-bottom: 1rem;
+}
+
+#adopcionContainer .card-header {
+    font-weight: 600;
+}
+
+/* Estilos para las imágenes de mascotas */
+.adopcion-card .rounded-circle {
+    border: 2px solid #e9ecef;
+}
+
+/* Estilos para los botones de acción */
+.adopcion-card .btn-group .btn {
+    margin-right: 0.25rem;
+}
+
+.adopcion-card .btn-group .btn:last-child {
+    margin-right: 0;
+}
+
+/* Estilos para el modal de detalles */
+#detallesModal .img-fluid {
+    border: 3px solid #e9ecef;
+    border-radius: 8px;
+}
+
+#detallesModal .badge {
+    font-size: 0.875rem;
+    padding: 0.375rem 0.75rem;
+}
+
+/* Estilos para los filtros */
+.btn-group .btn {
+    border-radius: 0.375rem;
+    margin-right: 0.25rem;
+}
+
+.btn-group .btn.active {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: white;
+}
+
+
+.adopcion-card {
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+
+.estado-pendiente {
+    border-left: 4px solid #ffc107;
+}
+
+.estado-aceptada {
+    border-left: 4px solid #198754;
+}
+
+.estado-rechazada {
+    border-left: 4px solid #dc3545;
+}

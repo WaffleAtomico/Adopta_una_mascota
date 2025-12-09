@@ -36,6 +36,17 @@ class AdopcionService {
       .populate("dueno", "-password");
   }
 
+  async obtenerSolicitudesComoSolicitante(userId) {
+    const solicitudes = await SolicitudAdopcion.find({
+      solicitante: userId,
+      isDeleted: false
+    })
+      .populate("mascota")
+      .populate("dueno", "-password");
+    
+    return solicitudes;
+  }
+
   async obtenerSolicitudesMascota(petId) {
     return await SolicitudAdopcion.find({
       mascota: petId,

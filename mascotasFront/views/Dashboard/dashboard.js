@@ -92,6 +92,6 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const statusMascotaContainer = document.getElementById("status-mascota-container");
   statusMascotaContainer.addEventListener("click", () => {
-    window.location.href = "/estado"
+    window.location.href = "/adopcion?v=1"
   }, { capture: true });
 });

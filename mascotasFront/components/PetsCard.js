@@ -136,7 +136,7 @@ async function crearSolicitudAdopcion(petId) {
             body: JSON.stringify({
                 mascota: petId,
                 solicitante: userId,
-                propietario: propietarioId,
+                dueno: propietarioId,
                 estado: 'pendiente'
             })
         });
