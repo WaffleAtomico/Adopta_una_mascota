@@ -149,8 +149,6 @@ async function handleRegistration(event) {
             password: form.querySelector('#password-input').value,
             rol: "OWNER"
         };
-        console.log(formData)
-        console.log(JSON.stringify(formData))
 
         const response = await fetch('/api/User/', {
             method: 'POST',
@@ -164,8 +162,6 @@ async function handleRegistration(event) {
             const errorData = await response.json();
             throw new Error(errorData.message || 'Error en el registro');
         }
-
-        console.log({res: response})
 
         const data = await response.json();
         showAlert('¡Cuenta creada exitosamente! Redirigiendo...', 'success');

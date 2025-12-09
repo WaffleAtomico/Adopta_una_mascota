@@ -1,9 +1,9 @@
-
 import { createButton } from './button.js';
 
 export function createPetProfile(data = {}){
     
     const petData = {
+        _id: data._id,
         nombre: data.nombre || "Nombre",
         sexo: data.sexo || "Hembra",
         tamaño: data.tamaño || "Mediano",
@@ -98,7 +98,7 @@ export function createPetProfile(data = {}){
                         </div>
                     </div>
                     <div class="card-footer d-flex justify-content-center align-items-center bg-white">
-                        ${createButton({ text: "Adóptame", color: "success", size: "lg", id: "adoptame-profile-btn" })}
+                        ${createButton({ text: "Adóptame", color: "success", size: "lg", id: `adoptame-profile-btn-${petData._id}` })}
                     </div>
                 </div>
             </div>

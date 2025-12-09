@@ -43,7 +43,7 @@ export function createPetCard({
                         </li>
                         <li class="list-group-item d-flex justify-content-center gap-2">
                             ${createButton({ text: "Mas Sobre mi", color: "primary", size: "sm", id: `btn-sobre-mi-${_id}` })}
-                            ${createButton({ text: "Adóptame", color: "success", size: "sm" })}
+                            ${createButton({ text: "Adóptame", color: "success", size: "sm", id: `btn-adoptame-${_id}` })}
                         </li>
                     </ul>                                  
             </div>
@@ -56,15 +56,102 @@ export function createPetCard({
 
 export function setupPetCardEventListeners() {
     document.addEventListener('click', function(e) {
-        // Buscar el botón más cercano si se hizo clic en un elemento interno
-        const button = e.target.closest('button[id^="btn-sobre-mi-"]');
+        // Botón "Más sobre mi"
+        const sobreMiButton = e.target.closest('button[id^="btn-sobre-mi-"]');
         
-        if (button && button.id) {
-            const petId = button.id.replace('btn-sobre-mi-', '');
+        if (sobreMiButton && sobreMiButton.id) {
+            const petId = sobreMiButton.id.replace('btn-sobre-mi-', '');
             
             if (petId) {
                 window.location.href = `/mascotas/${petId}`;
             }
         }
+        
+        // Botón "Adóptame"
+        const adoptameButton = e.target.closest('button[id^="btn-adoptame-"]');
+        
+        if (adoptameButton && adoptameButton.id) {
+            const petId = adoptameButton.id.replace('btn-adoptame-', '');
+            
+            if (petId) {
+                crearSolicitudAdopcion(petId);
+            }
+        }
     });
+}
+
+async function crearSolicitudAdopcion(petId) {
+    try {
+        // Obtener datos del usuario actual
+        const userResponse = await fetch('/api/auth/me', {
+            credentials: 'include'
+        });
+        
+        if (!userResponse.ok) {
+            if (userResponse.status === 401) {
+                alert('Debes iniciar sesión para solicitar una adopción');
+                window.location.href = '/login';
+                return;
+            }
+            throw new Error('No se pudo obtener la información del usuario');
+        }
+        
+        const userData = await userResponse.json();
+        if (!userData.user || !userData.user.id) {
+            alert('No se pudo identificar tu usuario. Por favor, inicia sesión nuevamente.');
+            window.location.href = '/login';
+            return;
+        }
+        
+        const userId = userData.user.id;
+        
+        // Obtener datos de la mascota para encontrar al propietario
+        const petResponse = await fetch(`/api/mascotas/${petId}`, {
+            credentials: 'include'
+        });
+        
+        if (!petResponse.ok) {
+            throw new Error('No se pudo obtener la información de la mascota');
+        }
+        
+        const petData = await petResponse.json();
+        if (!petData.mascota || !petData.mascota.publicadoPor) {
+            throw new Error('No se pudo identificar al propietario de la mascota');
+        }
+        
+        const propietarioId = petData.mascota.publicadoPor;
+        
+        // Verificar que el usuario no sea el propietario de la mascota
+        if (userId === propietarioId) {
+            alert('No puedes solicitar adoptar tu propia mascota');
+            return;
+        }
+        
+        const response = await fetch(`/api/adopcion?t=${Date.now()}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                mascota: petId,
+                solicitante: userId,
+                propietario: propietarioId,
+                estado: 'pendiente'
+            })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            alert('Solicitud de adopción enviada correctamente');
+            // Opcional: redirigir a página de estado
+            window.location.href = '/estado';
+        } else {
+            alert(data.msg || 'Error al enviar la solicitud de adopción');
+        }
+    } catch (error) {
+        console.error('Error al crear solicitud de adopción:', error);
+        alert('Error al enviar la solicitud. Por favor, intenta nuevamente.');
+    }
 }

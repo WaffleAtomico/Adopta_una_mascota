@@ -14,7 +14,7 @@ async function verificarSesion() {
       return;
     }
   } catch (err) {
-    console.log("No hay sesión activa");
+    // No hay sesión activa - continuar normalmente
   }
 }
 

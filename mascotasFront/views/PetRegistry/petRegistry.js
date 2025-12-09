@@ -132,8 +132,6 @@ function setupPetForm() {
                 microchip: formData.has('microchip')
             };
 
-            console.log('Enviando datos de la mascota:', petData);
-            
             const response = await fetch('/api/Mascotas/', {
                 method: 'POST',
                 headers: {
@@ -146,7 +144,6 @@ function setupPetForm() {
             let responseData;
             try {
                 responseData = await response.json();
-                console.log('Respuesta del servidor:', responseData);
             } catch (e) {
                 console.error('Error al analizar la respuesta JSON:', e);
                 throw new Error('Error en el formato de la respuesta del servidor');
