@@ -46,7 +46,6 @@ async function initAdopcionPage() {
     try {
         initNavbar();
         
-        // Usar datos de demostración
         const solicitudesEnviadas = solicitudesEnviadasDemo;
         const solicitudesRecibidas = solicitudesRecibidasDemo;
         
